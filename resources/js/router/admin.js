@@ -5,7 +5,7 @@ const adminRouter = [
         path: '/admin',
         component: adminLayout,
         children: [
-            // Admin routes will go here
+            { path: '', name: 'adminDashboard', component: () => import('../backEnd/adminDashboard.vue') },
         ]
     }
 ];
