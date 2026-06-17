@@ -7,10 +7,14 @@
                 <div class="text-2xl font-bold text-white">FARUK.</div>
                 <div class="flex gap-8 text-gray-300 font-medium uppercase text-sm tracking-widest">
                     <a href="#" @click.prevent="scrollToSection('home')" class="hover:text-red-500 transition">Home</a>
-                    <a href="#" @click.prevent="scrollToSection('features')" class="hover:text-red-500 transition">Features</a>
-                    <a href="#" @click.prevent="scrollToSection('portfolio')" class="hover:text-red-500 transition">Portfolio</a>
-                    <a href="#" @click.prevent="scrollToSection('resume')" class="hover:text-red-500 transition">Resume</a>
-                    <a href="#" @click.prevent="scrollToSection('contact')" class="hover:text-red-500 transition">Contact</a>
+                    <a href="#" @click.prevent="scrollToSection('features')"
+                        class="hover:text-red-500 transition">Features</a>
+                    <a href="#" @click.prevent="scrollToSection('portfolio')"
+                        class="hover:text-red-500 transition">Portfolio</a>
+                    <a href="#" @click.prevent="scrollToSection('resume')"
+                        class="hover:text-red-500 transition">Resume</a>
+                    <a href="#" @click.prevent="scrollToSection('contact')"
+                        class="hover:text-red-500 transition">Contact</a>
                     <a href="#"
                         class="px-5 py-2 border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-white transition">BUY
                         NOW</a>
@@ -24,7 +28,9 @@
                 <h4 class="text-sm tracking-[3px] text-gray-400 uppercase">Welcome to my world</h4>
                 <h1 class="text-6xl font-bold leading-[1.2]">Hi, I'm <span class="text-red-500">Faruk Mia</span>
                 </h1>
-                <h2 class="text-4xl font-bold">a Full Stack Developer.</h2>
+                <h2 class="text-4xl font-bold h-16">
+                    a <span class="text-red-500">{{ text }}</span><span class="animate-pulse">|</span>
+                </h2>
                 <p class="text-lg text-gray-400 leading-8 pt-4">
                     Highly motivated and detail-oriented Full Stack Web Developer with a strong foundation in the
                     Laravel and Vue.js ecosystem.
@@ -46,9 +52,9 @@
 
             <div class="grid grid-cols-3 gap-8">
                 <div v-for="i in 3" :key="i"
-                    class="p-10 rounded-2xl bg-[#212428] shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33] hover:bg-gradient-to-r from-red-600 to-red-500 transition-all duration-300 group cursor-pointer">
-                    <div class="w-12 h-12 mb-8 bg-gray-800 rounded-lg group-hover:bg-white/20"></div>
-                    <h3 class="text-2xl font-bold mb-4 group-hover:text-white">Service Title {{ i }}</h3>
+                    class="p-10 rounded-2xl bg-[#212428] shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33] transition-all duration-300 group cursor-pointer">
+                    <div class="w-12 h-12 mb-8 bg-gray-800 rounded-lg group-hover:bg-red-500"></div>
+                    <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-red-500">Service Title {{ i }}</h3>
                     <p class="text-gray-400 group-hover:text-gray-100 leading-7">
                         Professional development with Laravel, Vue.js and modern web standards.
                     </p>
@@ -302,19 +308,42 @@
 export default {
     data() {
         return {
-
+            text: '',
+            words: ['Full Stack Developer.', 'Professional Coder.', 'Problem Solver.'],
+            wordIndex: 0,
+            isDeleting: false,
+            speed: 150
         };
     },
+    mounted() {
+        this.type();
+    },
     methods: {
+        type() {
+            const currentWord = this.words[this.wordIndex];
+
+            if (this.isDeleting) {
+                this.text = currentWord.substring(0, this.text.length - 1);
+                this.speed = 100;
+            } else {
+                this.text = currentWord.substring(0, this.text.length + 1);
+                this.speed = 150;
+            }
+
+            if (!this.isDeleting && this.text === currentWord) {
+                setTimeout(() => this.isDeleting = true, 2000);
+            } else if (this.isDeleting && this.text === '') {
+                this.isDeleting = false;
+                this.wordIndex = (this.wordIndex + 1) % this.words.length;
+                this.speed = 500;
+            }
+
+            setTimeout(this.type, this.speed);
+        },
         scrollToSection(id) {
             const element = document.getElementById(id);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
+            if (element) element.scrollIntoView({ behavior: 'smooth' });
         }
-    },
-    mounted() {
-
     }
 }
 </script>
