@@ -5,7 +5,7 @@
         <nav class="sticky top-0 z-50 bg-[#212428]/80 backdrop-blur-md border-b border-gray-700">
             <div class="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
                 <div class="text-2xl font-bold text-white">FARUK.</div>
-                <div class="flex gap-8 text-gray-300 font-medium uppercase text-sm tracking-widest">
+                <div class="flex items-center gap-8 text-gray-300 font-medium uppercase text-sm tracking-widest">
                     <a href="#" @click.prevent="scrollToSection('home')" class="hover:text-red-500 transition">Home</a>
                     <a href="#" @click.prevent="scrollToSection('features')"
                         class="hover:text-[#FF014F] transition">Features</a>
@@ -52,16 +52,17 @@
 
             <div class="grid grid-cols-3 gap-8">
                 <div v-for="i in 3" :key="i"
-                    class="p-10 rounded-2xl bg-[#212428] hover:bg-[#1A1C20] shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33] transition-all duration-300 group cursor-pointer">
-                    <div class="hover:-translate-y-4 transition duration-400">
-                        <div class="w-12 h-12 mb-8 bg-gray-800 rounded-lg group-hover:bg-[#FF014F]"></div>
+                    class="rounded-2xl bg-[#212428] hover:bg-[#1A1C20] shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33] transition-all duration-300 group cursor-pointer">
+                    <div class="p-10 hover:-translate-y-6 transition duration-600">
+                        <div class="w-12 h-12 my-8 bg-gray-800 rounded-lg group-hover:bg-[#FF014F]"></div>
                         <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-[#FF014F]">Service Title {{ i }}
                         </h3>
-                        <p class="text-gray-400 group-hover:text-gray-100 leading-7">
+                        <p class="text-gray-400 group-hover:text-gray-100 leading-7 mb-8">
                             Professional development with Laravel, Vue.js and modern web standards.
                         </p>
-                        <a href="#" class="text-[#FF014F]">
-                            <i class="feather-arrow-right text-[#FF014F]"></i>
+                        <a href="#"
+                            class=" text-[#212428] text-xl group-hover:text-[#FF014F] transform-colors duration-300">
+                            <i class="fa fa-arrow-right"></i>
                         </a>
                     </div>
 
@@ -273,10 +274,14 @@
                 <div>
                     <h4 class="text-[#FF014F] font-bold mb-6 uppercase tracking-wider">Quick Link</h4>
                     <ul class="space-y-4 text-gray-400">
-                        <li><a href="#features" class="hover:text-[#FF014F] transition">Features</a></li>
-                        <li><a href="#portfolio" class="hover:text-[#FF014F] transition">Portfolio</a></li>
-                        <li><a href="#resume" class="hover:text-[#FF014F] transition">Resume</a></li>
-                        <li><a href="#contact" class="hover:text-[#FF014F] transition">Contact</a></li>
+                        <li><a href="#" @click.prevent="scrollToSection('features')"
+                                class="hover:text-[#FF014F] transition">Features</a></li>
+                        <li><a href="#" @click.prevent="scrollToSection('portfolio')"
+                                class="hover:text-[#FF014F] transition">Portfolio</a></li>
+                        <li><a href="#" @click.prevent="scrollToSection('resume')"
+                                class="hover:text-[#FF014F] transition">Resume</a></li>
+                        <li><a href="#" @click.prevent="scrollToSection('contact')"
+                                class="hover:text-[#FF014F] transition">Contact</a></li>
                     </ul>
                 </div>
 
@@ -313,7 +318,6 @@
 </template>
 
 <script>
-import feather from 'feather-icons';
 export default {
     data() {
         return {
@@ -327,7 +331,6 @@ export default {
     },
     mounted() {
         this.type();
-        feather.replace();
     },
     methods: {
         type() {
