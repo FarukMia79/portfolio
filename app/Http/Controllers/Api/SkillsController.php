@@ -94,6 +94,14 @@ class SkillsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $skill = Skill::find($id);
+        if ($skill) {
+            if ($skill->icon && file_exists(public_path($skill->icon))) {
+                unlink(public_path($skill->icon));
+            }
+            $skill->delete();
+            return response()->json(['message' => 'Skill deleted successfully']);
+        }
+        return response()->json(['message' => 'Not found'], 404);
     }
 }
