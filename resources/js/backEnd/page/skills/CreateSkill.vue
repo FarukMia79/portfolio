@@ -69,7 +69,7 @@
                     <label class="text-sm font-semibold text-gray-600">Project Status</label>
                     <input type="radio" v-model="formData.status" value="draft">
                     <label class="text-sm font-semibold text-gray-600">Draft</label>
-                    <input type="radio" v-model="formData.status" value="Published">
+                    <input type="radio" v-model="formData.status" value="published">
                     <label class="text-sm font-semibold text-gray-600">Published</label>
                     <small v-if="errors.status" class="text-red-500 text-sm">{{ errors.status[0] }}</small>
                 </div>

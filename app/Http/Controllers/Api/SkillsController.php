@@ -36,8 +36,8 @@ class SkillsController extends Controller
             'name' => 'required|string|unique:skills,name|max:255',
             'category' => 'required|string|max:255',
             'level' => 'required|integer|min:0|max:100',
-            'icon'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status'=> 'required|string|max:255',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status' => 'required|string|max:255',
         ]);
 
         if ($request->hasFile('icon')) {
@@ -56,7 +56,7 @@ class SkillsController extends Controller
 
             $validatedData['icon'] = 'uploads/icons/' . $iconName;
 
-            
+
         }
 
         $skill = Skill::create($validatedData);
@@ -86,7 +86,39 @@ class SkillsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'level' => 'required|integer|max:100',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status' => 'required|string|max:255',
+        ]);
+
+        $skill = Skill::find($id);
+
+        if ($request->hasFile('icon')) {
+            if (file_exists(public_path($skill->icon))) {
+                unlink(public_path($skill->icon));
+            }
+            $file = $request->file('icon');
+            $iconName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $uploadPath = public_path('uploads/icons/');
+
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
+
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($file);
+            $image->resize(50, 50);
+            $image->save($uploadPath . $iconName);
+
+            $validateData['icon'] = 'uploads/icons/' . $iconName;
+
+
+        }
+        $skill->update($validateData);
+        return response()->json(['skill' => $skill, 'message' => 'Skill updated successfully']);
     }
 
     /**

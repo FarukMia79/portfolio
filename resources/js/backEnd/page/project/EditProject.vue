@@ -119,6 +119,7 @@ export default {
         getData() {
             axios.get(`/api/projects/${this.id}`)
                 .then(response => {
+                    console.log("Server Response:", response.data);
                     this.formData.title = response.data.title;
                     this.formData.category = response.data.category;
                     this.formData.description = response.data.description;
@@ -134,7 +135,10 @@ export default {
             Data.append('title', this.formData.title);
             Data.append('category', this.formData.category);
             Data.append('description', this.formData.description || '');
-            Data.append('image', this.formData.image || '');
+
+            if (this.formData.image) {
+                Data.append('image', this.formData.image);
+            }
             Data.append('status', this.formData.status || 'draft');
             Data.append('_method', 'PUT');
 
