@@ -29,7 +29,8 @@
                             <div class="flex gap-2">
                                 <router-link :to="{ name: 'editResume', params: { id: resume.id } }"
                                     class="text-gray-400 hover:text-blue-600">Edit</router-link>
-                                <button class="text-gray-400 hover:text-red-600">Delete</button>
+                                <button @click="deleteResume(resume.id)"
+                                    class="text-gray-400 hover:text-red-600">Delete</button>
                             </div>
                         </div>
                         <span class="inline-block bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold">{{
@@ -53,7 +54,8 @@
                             <div class="flex gap-2">
                                 <router-link :to="{ name: 'editResume', params: { id: resume.id } }"
                                     class="text-gray-400 hover:text-blue-600">Edit</router-link>
-                                <button class="text-gray-400 hover:text-red-600">Delete</button>
+                                <button @click="deleteResume(resume.id)"
+                                    class="text-gray-400 hover:text-red-600">Delete</button>
                             </div>
                         </div>
                         <p class="text-sm text-gray-600 mb-3">{{ resume.description }}</p>
@@ -86,7 +88,37 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
+        },
+
+        deleteResume(id) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                    axios.delete('/api/resumes/' + id)
+                        .then(() => {
+                            this.resumes = this.resumes.filter(resume => {
+                                return resume.id != id;
+                            });
+                        }).catch((error) => {
+                            console.log(error);
+                        });
+                }
+            });
+
         }
     }
+
 }
 </script>
