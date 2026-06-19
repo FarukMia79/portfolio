@@ -11,3 +11,4 @@ Route::get('/user', function (Request $request) {
 // Admin APIs
 Route::apiResource('projects', \App\Http\Controllers\Api\ProjectController::class);
 Route::apiResource('skills', \App\Http\Controllers\Api\SkillsController::class);
+Route::apiResource('resumes', \App\Http\Controllers\Api\ResumeController::class);
