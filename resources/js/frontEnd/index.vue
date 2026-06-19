@@ -15,9 +15,9 @@
                         class="hover:text-[#FF014F] transition">Resume</a>
                     <a href="#" @click.prevent="scrollToSection('contact')"
                         class="hover:text-[#FF014F] transition">Contact</a>
-                    <a href="#"
-                        class="px-5 py-2 border border-[#FF014F] text-[#FF014F] rounded hover:bg-[#FF014F] hover:text-white transition">BUY
-                        NOW</a>
+                    <a href="/uploads/files/Faruk CV.pdf" download="Faruk CV.pdf"
+                        class="px-5 py-2 border border-[#FF014F] text-[#FF014F] rounded hover:bg-[#FF014F] hover:text-white transition">Download
+                        CV</a>
                 </div>
             </div>
         </nav>
@@ -146,7 +146,7 @@
         <!-- Resume Section -->
         <section id="resume" class="max-w-6xl mx-auto px-6 py-20 border-t border-[#1A1C20]">
             <div class="text-center mb-16">
-                <h4 class="text-[#FF014F] uppercase tracking-[2px] text-sm mb-2">7+ Years of Experience</h4>
+                <h4 class="text-[#FF014F] uppercase tracking-[2px] text-sm mb-2">2+ Years of Experience</h4>
                 <h2 class="text-5xl font-bold">My Resume</h2>
             </div>
 
@@ -154,41 +154,35 @@
             <div class="grid grid-cols-4 gap-4 mb-12">
                 <button @click="activeTab = 'education'" :aria-selected="activeTab === 'education'"
                     class="py-4 bg-[#212428] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] rounded-lg font-bold hover:-translate-y-1 transition duration-300 hover:bg-[#1A1C20] hover:text-[#FF014F] aria-selected:text-[#FF014F] aria-selected:bg-[#1A1C20] aria-selected:border-b-2 aria-selected:border-[#FF014F]">Education</button>
-                <button @click="activeTab = 'professional'" :aria-selected="activeTab === 'professional'"
+                <button @click="activeTab = 'professionalSkills'" :aria-selected="activeTab === 'professionalSkills'"
                     class="py-4 bg-[#212428] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] rounded-lg font-bold hover:-translate-y-1 duration-300 hover:bg-[#1A1C20] hover:text-[#FF014F] transition aria-selected:text-[#FF014F] aria-selected:bg-[#1A1C20] aria-selected:border-b-2 aria-selected:border-[#FF014F]">Professional
                     Skills</button>
                 <button @click="activeTab = 'experience'" :aria-selected="activeTab === 'experience'"
                     class="py-4 bg-[#212428] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] rounded-lg font-bold hover:-translate-y-1 duration-300 hover:bg-[#1A1C20] hover:text-[#FF014F] transition aria-selected:text-[#FF014F] aria-selected:bg-[#1A1C20]  aria-selected:border-b-2 aria-selected:border-[#FF014F]">Experience</button>
-                <button @click="activeTab = 'interview'" :aria-selected="activeTab === 'interview'"
-                    class="py-4 bg-[#212428] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] rounded-lg font-bold hover:-translate-y-1 duration-300 hover:bg-[#1A1C20] hover:text-[#FF014F] transition aria-selected:text-[#FF014F] aria-selected:bg-[#1A1C20]  aria-selected:border-b-2 aria-selected:border-[#FF014F]">Interview</button>
+                <button @click="activeTab = 'cv'" :aria-selected="activeTab === 'cv'"
+                    class="py-4 bg-[#212428] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] rounded-lg font-bold hover:-translate-y-1 duration-300 hover:bg-[#1A1C20] hover:text-[#FF014F] transition aria-selected:text-[#FF014F] aria-selected:bg-[#1A1C20]  aria-selected:border-b-2 aria-selected:border-[#FF014F]">Download
+                    CV</button>
             </div>
 
             <!-- Content Grid -->
-            <div class="grid md:grid-cols-2 gap-16">
+            <div v-if="activeTab === 'education'" class="grid md:grid-cols-2 gap-16">
                 <!-- Education Column -->
                 <div>
                     <h3 class="text-2xl font-bold mb-8">Education Quality</h3>
                     <div class="space-y-8">
-                        <!-- Education 1 -->
-                        <div
-                            class="p-8 bg-[#212428] hover:bg-[#1A1C20] rounded-2xl shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
-                            <div class="flex justify-between mb-4">
-                                <h4 class="text-xl font-bold">B.Sc in CSE</h4>
-                                <span class="bg-[#212428] px-3 py-1 rounded shadow-inner text-[#FF014F] text-sm">2.58
-                                    CGPA</span>
+                        <!-- Education -->
+                        <div v-for="resume in resumes" :key="resume.id">
+                            <div v-if="resume.type === 'education'"
+                                class="p-8 bg-[#212428] hover:bg-[#1A1C20] rounded-2xl shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
+                                <div class="flex justify-between mb-4">
+                                    <h4 class="text-xl font-bold">{{ resume.title }}</h4>
+                                    <span class="bg-[#212428] px-3 py-1 rounded shadow-inner text-[#FF014F] text-sm">{{
+                                        resume.result }}</span>
+                                </div>
+                                <p class="text-gray-400 text-sm">{{ resume.institution }} ({{ resume.period }})</p>
                             </div>
-                            <p class="text-gray-400 text-sm">Green University Of Bangladesh (2026)</p>
                         </div>
-                        <!-- Education 2 -->
-                        <div
-                            class="p-8 bg-[#212428] hover:bg-[#1A1C20] rounded-2xl shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
-                            <div class="flex justify-between mb-4">
-                                <h4 class="text-xl font-bold">HSC (Alim)</h4>
-                                <span class="bg-[#212428] px-3 py-1 rounded shadow-inner text-[#FF014F] text-sm">3.69
-                                    GPA</span>
-                            </div>
-                            <p class="text-gray-400 text-sm">Palashbari Fadil Madrasha (2019)</p>
-                        </div>
+
                     </div>
                 </div>
 
@@ -197,16 +191,98 @@
                     <h3 class="text-2xl font-bold mb-8">Professional Experience</h3>
                     <div class="space-y-8">
                         <!-- Job 1 -->
-                        <div
-                            class="p-8 bg-[#212428] hover:bg-[#1A1C20] rounded-2xl shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
-                            <h4 class="text-xl font-bold mb-2">Freelance Web Developer</h4>
-                            <p class="text-[#FF014F] text-sm mb-4">Self-Employed (2024 – Ongoing)</p>
-                            <p class="text-gray-400 text-sm">Developing and maintaining responsive websites using
-                                Laravel & custom PHP frameworks.</p>
+                        <div v-for="resume in resumes" :key="resume.id">
+                            <div v-if="resume.type === 'experience'"
+                                class="p-8 bg-[#212428] hover:bg-[#1A1C20] rounded-2xl shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
+                                <h4 class="text-xl font-bold mb-2">{{ resume.title }}</h4>
+                                <p class="text-[#FF014F] text-sm mb-4">{{ resume.institution }} ({{ resume.period }})
+                                </p>
+                                <p class="text-gray-400 text-sm">{{ resume.description }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Skills Section -->
+            <div v-if="activeTab === 'professionalSkills'" class="max-w-6xl mx-auto py-12 px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+                    <div v-for="(skillsInCategory, category) in groupedSkills" :key="category">
+
+                        <h4 class="text-red-500 uppercase tracking-widest text-xs font-semibold mb-2">Features</h4>
+
+                        <h2 class="text-4xl font-bold text-white mb-8">{{ category }}</h2>
+
+                        <div v-for="skill in skillsInCategory" :key="skill.id" class="mb-8">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-bold tracking-widest text-sm">{{
+                                    skill.name.toUpperCase() }}</span>
+                                <span class="text-gray-400 text-sm font-semibold">{{ skill.level }}%</span>
+                            </div>
+                            <div class="h-2 w-full bg-[#191b1e] rounded-full shadow-[inset_0px_1px_1px_#000]">
+                                <div class="h-2 bg-linear-to-l from-[#FF014F] to-[#8a2be2] rounded-full"
+                                    :style="{ width: skill.level + '%' }"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div v-if="activeTab === 'experience'" class="max-w-6xl mx-auto py-12 px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+
+                    <!-- Job Experience Column -->
+                    <div>
+                        <h4 class="text-red-500 text-sm mb-2">2024 - 2026</h4>
+                        <h2 class="text-4xl font-bold text-white mb-8">Job Experience</h2>
+
+                        <div class="space-y-8">
+                            <div v-for="resume in resumes.filter(r => r.type === 'experience')" :key="resume.id"
+                                class="p-8 bg-[#212428] rounded-2xl shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33] border-l-4 border-[#FF014F]">
+
+                                <div class="flex justify-between items-start mb-4">
+                                    <h3 class="text-2xl font-bold text-white">{{ resume.title }}</h3>
+                                    <span
+                                        class="bg-[#191b1e] text-[#FF014F] px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">
+                                        {{ resume.result }} 
+                                    </span>
+                                </div>
+                                <p class="text-gray-400 text-sm mb-4">{{ resume.institution }} - ({{ resume.period }})
+                                </p>
+                                <p class="text-gray-400 leading-7 text-sm">{{ resume.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second Column (Project Experience) -->
+                    <div>
+                        <h4 class="text-red-500 text-sm mb-2">2024 - 2026</h4>
+                        <h2 class="text-4xl font-bold text-white mb-8">Project Experience</h2>
+
+                        <div class="space-y-8">
+                            <div v-for="project in projects" :key="project.id"
+                                class="p-8 bg-[#212428] rounded-2xl shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33] border-l-4 border-[#FF014F]">
+                                <h3 class="text-2xl font-bold text-white">{{ project.title }}</h3>
+                                <p class="text-gray-400 text-sm mb-4">{{ project.category }}</p>
+                                <p class="text-gray-400 leading-7 text-sm">{{ project.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CV Section -->
+            <div v-if="activeTab === 'cv'" class="mt-12 w-full h-[800px] bg-white rounded-2xl shadow-lg">
+                <!-- PDF viewer -->
+                <iframe src="/uploads/files/Faruk CV.pdf" width="100%" height="100%" class="rounded-xl">
+                    This browser does not support PDFs. Please download the PDF to view it:
+                    <a href="/uploads/files/Faruk CV.pdf" class="text-blue-600 underline">Download PDF</a>
+                </iframe>
+            </div>
+
         </section>
 
         <!-- Contact Section -->
@@ -321,18 +397,51 @@
 export default {
     data() {
         return {
+            projects: [],
+            skills: [],
+            resumes: [],
             text: '',
             words: ['Full Stack Developer.', 'Professional Coder.', 'Problem Solver.'],
             wordIndex: 0,
             isDeleting: false,
             speed: 150,
-            activeTab: 'active'
+            activeTab: 'education'
         };
     },
     mounted() {
         this.type();
+        this.getResumes();
+        this.getSkills();
+        this.getProjects();
     },
     methods: {
+        getResumes() {
+            axios.get('/api/resumes')
+                .then(response => {
+                    this.resumes = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+        getSkills() {
+            axios.get('/api/skills')
+                .then(response => {
+                    this.skills = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+        getProjects() {
+            axios.get('/api/projects')
+                .then(response => {
+                    this.projects = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
         type() {
             const currentWord = this.words[this.wordIndex];
 
@@ -357,6 +466,17 @@ export default {
         scrollToSection(id) {
             const element = document.getElementById(id);
             if (element) element.scrollIntoView({ behavior: 'smooth' });
+        }
+    },
+    computed: {
+        groupedSkills() {
+            return this.skills.reduce((acc, skill) => {
+                if (!acc[skill.category]) {
+                    acc[skill.category] = [];
+                }
+                acc[skill.category].push(skill);
+                return acc;
+            }, {});
         }
     }
 }

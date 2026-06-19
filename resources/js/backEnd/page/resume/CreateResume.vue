@@ -121,7 +121,7 @@ export default {
             axios.post('/api/resumes', data)
                 .then(response => {
                     Notification.success('Resume created successfully');
-                    this.$router.push({ path: '/admin/resumes' });
+                    this.$router.push({ path: '/admin/resume' });
                 })
                 .catch(error => {
                     Notification.error('Failed to create resume');
