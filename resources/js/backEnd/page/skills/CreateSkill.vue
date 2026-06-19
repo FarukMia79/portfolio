@@ -8,24 +8,26 @@
 
         <!-- Form Card -->
         <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-            <form class="space-y-6">
+            <form @submit.prevent="submitForm" enctype="multipart/form-data" class="space-y-6">
 
                 <!-- Skill Name & Category -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-2">
                         <label class="text-sm font-bold text-gray-700">Skill Name</label>
-                        <input type="text"
+                        <input type="text" v-model="formData.name"
                             class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-red-500 outline-none transition"
                             placeholder="e.g. Laravel">
+                        <small v-if="errors.name" class="text-red-500 text-sm">{{ errors.name[0] }}</small>
                     </div>
                     <div class="space-y-2">
                         <label class="text-sm font-bold text-gray-700">Category</label>
-                        <select
+                        <select v-model="formData.category"
                             class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-red-500 outline-none transition">
-                            <option>Frontend</option>
-                            <option>Backend</option>
-                            <option>Database</option>
-                            <option>Design</option>
+                            <option value="">Select Category</option>
+                            <option value="Frontend">Frontend</option>
+                            <option value="Backend">Backend</option>
+                            <option value="Database">Database</option>
+                            <option value="Design">Design</option>
                         </select>
                     </div>
                 </div>
@@ -34,34 +36,46 @@
                 <div class="space-y-2">
                     <div class="flex justify-between">
                         <label class="text-sm font-bold text-gray-700">Proficiency Level</label>
-                        <span class="text-sm font-bold text-red-500">85%</span>
+                        <span v-if="formData.level" class="text-sm font-bold text-red-500">{{ formData.level }}%</span>
                     </div>
-                    <input type="range"
+                    <input type="range" v-model="formData.level"
                         class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-red-600">
                 </div>
 
                 <!-- Icon Upload -->
                 <div class="space-y-2">
-                    <label class="text-sm font-bold text-gray-700">Skill Icon / Logo</label>
-                    <div class="flex items-center justify-center w-full">
-                        <label
-                            class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer bg-gray-50 hover:bg-gray-100 transition">
-                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                <svg class="w-8 h-8 mb-3 text-gray-400" fill="none" stroke="currentColor"
+                    <label class="text-sm font-semibold text-gray-600">Project Thumbnail</label>
+                    <div
+                        class="border-2 border-dashed border-gray-200 rounded-2xl p-10 text-center hover:border-red-400 transition cursor-pointer bg-gray-50">
+                        <input type="file" @change="handleImageUpload" class="hidden" id="fileInput">
+                        <label for="fileInput" class="cursor-pointer">
+                            <div class="text-gray-400 flex flex-col items-center">
+                                <img v-if="imagePreview" :src="imagePreview"
+                                    class="w-20 h-20 mb-2 object-cover rounded-lg">
+                                <svg v-else class="w-10 h-10 mb-2" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
                                     </path>
                                 </svg>
-                                <p class="text-sm text-gray-500">Upload SVG or PNG icon</p>
+                                <p class="font-medium">Click to upload thumbnail</p>
                             </div>
-                            <input type="file" class="hidden">
                         </label>
                     </div>
                 </div>
 
+                <!-- Status Selection -->
+                <div class="flex items-center gap-4">
+                    <label class="text-sm font-semibold text-gray-600">Project Status</label>
+                    <input type="radio" v-model="formData.status" value="draft">
+                    <label class="text-sm font-semibold text-gray-600">Draft</label>
+                    <input type="radio" v-model="formData.status" value="Published">
+                    <label class="text-sm font-semibold text-gray-600">Published</label>
+                    <small v-if="errors.status" class="text-red-500 text-sm">{{ errors.status[0] }}</small>
+                </div>
+
                 <!-- Submit Button -->
-                <div class="flex justify-end gap-4 pt-4 border-t">
+                <div class="flex justify-end gap-4 pt-4">
                     <button type="button"
                         class="px-6 py-3 rounded-xl font-bold text-gray-500 hover:bg-gray-100 transition">Cancel</button>
                     <button type="submit"
@@ -75,8 +89,54 @@
 </template>
 
 <script>
+import Notification from '../../../Helpers/Notification';
 export default {
-
+    data() {
+        return {
+            formData: {
+                name: '',
+                category: '',
+                level: 80,
+                icon: null,
+                status: 'draft'
+            },
+            errors: {},
+            imagePreview: null
+        }
+    },
+    methods: {
+        handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file?.size > 2 * 1024 * 1024) {
+                Notification.error('File size must be less than 2MB');
+                return;
+            }
+            this.formData.icon = file;
+            this.imagePreview = URL.createObjectURL(file);
+        },
+        submitForm() {
+            let formData = new FormData();
+            formData.append('name', this.formData.name);
+            formData.append('category', this.formData.category);
+            formData.append('level', this.formData.level);
+            formData.append('icon', this.formData.icon);
+            formData.append('status', this.formData.status);
+            
+            axios.post('/api/skills', formData)
+                .then(response => {
+                    Notification.success('Skill created successfully!');
+                    this.$router.push({ path: '/admin/skills' });
+                })
+                .catch(error => {
+                    if (error.response && error.response.data.errors) {
+                        this.errors = error.response.data.errors;
+                    } else {
+                        Notification.error('Error creating skill!');
+                    }
+                    console.error('Error creating skill:', error);
+                });
+        }
+    }
 }
 </script>
 

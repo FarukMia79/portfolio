@@ -22,7 +22,8 @@
                         <!-- Icon Placeholder -->
                         <div
                             class="w-14 h-14 rounded-xl bg-gray-50 flex items-center justify-center text-3xl border border-gray-100">
-                            {{ skill.icon }}
+                            <img :src="skill.icon ? '/' + skill.icon : ''" alt="Skill Icon"
+                                class="w-10 h-10 object-contain">
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-800 text-lg">{{ skill.name }}</h3>
@@ -72,13 +73,31 @@
 export default {
     data() {
         return {
-            skills: [
-                { id: 1, name: 'Laravel', category: 'BACKEND', level: 95, color: 'bg-red-500', icon: '🚀' },
-                { id: 2, name: 'Vue.js', category: 'FRONTEND', level: 90, color: 'bg-emerald-500', icon: '⚡' },
-                { id: 3, name: 'Tailwind CSS', category: 'DESIGN', level: 98, color: 'bg-sky-500', icon: '🎨' },
-                { id: 4, name: 'MySQL', category: 'DATABASE', level: 85, color: 'bg-amber-500', icon: '🗄️' }
-            ]
+            skills: []
         };
+    },
+    mounted() {
+        this.fetchSkills();
+    },
+    methods: {
+        fetchSkills() {
+            axios.get('/api/skills')
+                .then(response => {
+                    this.skills = response.data;
+                    this.skills.forEach(skill => {
+                        skill.color = this.getSkillColor(skill.level);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching skills:', error);
+                });
+        },
+        getSkillColor(level) {
+            if (level >= 90) return 'bg-green-500';
+            if (level >= 80) return 'bg-blue-500';
+            if (level >= 70) return 'bg-red-500';
+            return 'bg-yellow-500';
+        }
     }
 }
 </script>

@@ -28,6 +28,7 @@
                         <select
                             class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none transition"
                             v-model="formData.category">
+                            <option value="">Select Category</option>
                             <option value="Web Application">Web Application</option>
                             <option value="AI/ML Project">AI/ML Project</option>
                             <option value="Management System">Management System</option>
