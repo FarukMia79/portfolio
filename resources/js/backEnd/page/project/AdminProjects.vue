@@ -27,11 +27,12 @@
                     <tr v-for="project in projects" :key="project.id" class="hover:bg-blue-50/50 transition-colors">
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-4">
-                                <img :src="project.image"
+                                <img :src="project.image ? '/' + project.image : ''"
                                     class="w-14 h-14 rounded-lg object-cover border border-gray-100 shadow-sm">
                                 <div>
                                     <h4 class="font-bold text-gray-800">{{ project.title }}</h4>
-                                    <p class="text-xs text-gray-400">Created: {{ project.date }}</p>
+                                    <p class="text-xs text-gray-400">Created: {{ new
+                                        Date(project.created_at).toLocaleDateString() }}</p>
                                 </div>
                             </div>
                         </td>
@@ -40,13 +41,17 @@
                                 project.category }}</span>
                         </td>
                         <td class="px-6 py-4">
-                            <span class="flex items-center gap-2 text-green-600 font-medium text-sm">
-                                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Published
+                            <span class="flex items-center gap-2 text-green-600 font-medium text-sm"
+                                :class="project.status === 'draft' ? 'text-red-600' : 'text-green-600'">
+                                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"
+                                    :class="project.status === 'draft' ? 'bg-red-500' : 'bg-green-500'"></span> {{
+                                project.status }}
                             </span>
                         </td>
                         <td class="px-6 py-4 text-center">
                             <div class="flex items-center justify-center gap-2">
-                                <router-link :to="{ name: 'editProject', params: { id: project.id } }" class="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition">
+                                <router-link :to="{ name: 'editProject', params: { id: project.id } }"
+                                    class="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition">
                                     <!-- Edit Icon -->
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -54,7 +59,8 @@
                                         </path>
                                     </svg>
                                 </router-link>
-                                <button class="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition">
+                                <button @click="deleteProject(project.id)"
+                                    class="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition">
                                     <!-- Delete Icon -->
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -75,11 +81,50 @@
 export default {
     data() {
         return {
-            projects: [
-                { id: 1, title: 'News Portal Website', category: 'Web App', image: 'https://via.placeholder.com/150', date: '12 June, 2026' },
-                { id: 2, title: 'E-Commerce with AI', category: 'AI/ML', image: 'https://via.placeholder.com/150', date: '10 June, 2026' }
-            ]
+            projects: []
         };
+    },
+    mounted() {
+        this.fetchProjects();
+    },
+    methods: {
+        fetchProjects() {
+            axios.get('/api/projects')
+                .then(response => {
+                    this.projects = response.data;
+                })
+                .catch(error => {
+                    console.error('Error fetching projects:', error);
+                });
+        },
+        deleteProject(id) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                    axios.delete('/api/projects/' + id)
+                        .then(() => {
+                            this.projects = this.projects.filter(project => {
+                                return project.id != id;
+                            });
+                        }).catch((error) => {
+                            console.log(error);
+                        });
+                }
+            });
+
+        }
     }
 }
 </script>
