@@ -28,19 +28,19 @@
                 <h4 class="text-sm tracking-[3px] text-gray-400 uppercase">Welcome to my world</h4>
                 <h1 class="text-6xl font-bold leading-[1.2]">Hi, I'm <span class="text-[#FF014F]">Faruk Mia</span>
                 </h1>
-                <h2 class="text-4xl font-bold h-16">
+                <h2 class="text-5xl font-bold h-16">
                     a <span class="text-[#FF014F]">{{ text }}</span><span class="animate-pulse">|</span>
                 </h2>
                 <p class="text-lg text-gray-400 leading-8 pt-4">
-                    Highly motivated and detail-oriented Full Stack Web Developer with a strong foundation in the
-                    Laravel and Vue.js ecosystem.
+                    I'm a passionate Full Stack Web Developer with expertise in building modern, responsive, and
+                    user-friendly web applications using Laravel and Vue.js.
                 </p>
             </div>
             <div class="w-1/2 flex justify-end">
                 <div
-                    class="w-[400px] h-[500px] bg-[#212428] p-4 rounded-2xl shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
+                    class="w-[400px] h-[500px] bg-[#212428] rounded-2xl shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
                     <!-- আপনার ছবি এখানে দিবেন -->
-                    <div class="w-full h-full bg-gray-700 rounded-xl"></div>
+                    <img src="../../../public/uploads/images/faruk-mia.png" alt="Faruk Mia" class="w-full h-full rounded-xl">
                 </div>
             </div>
         </section>
@@ -51,21 +51,50 @@
             <h2 class="text-5xl font-bold mb-16">What I Do</h2>
 
             <div class="grid grid-cols-3 gap-8">
-                <div v-for="i in 3" :key="i"
+                <div
                     class="rounded-2xl bg-[#212428] hover:bg-[#1A1C20] shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33] transition-all duration-300 group cursor-pointer">
                     <div class="p-10 hover:-translate-y-6 transition duration-600">
                         <div class="w-12 h-12 my-8 bg-gray-800 rounded-lg group-hover:bg-[#FF014F]"></div>
-                        <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-[#FF014F]">Service Title {{ i }}
+                        <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-[#FF014F]">Backend Development
                         </h3>
                         <p class="text-gray-400 group-hover:text-gray-100 leading-7 mb-8">
-                            Professional development with Laravel, Vue.js and modern web standards.
+                            Developing robust and scalable server-side applications using PHP and Laravel. I focus on creating secure, efficient, and maintainable code that powers modern web applications.
                         </p>
                         <a href="#"
                             class=" text-[#212428] text-xl group-hover:text-[#FF014F] transform-colors duration-300">
                             <i class="fa fa-arrow-right"></i>
                         </a>
                     </div>
-
+                </div>
+                <div
+                    class="rounded-2xl bg-[#212428] hover:bg-[#1A1C20] shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33] transition-all duration-300 group cursor-pointer">
+                    <div class="p-10 hover:-translate-y-6 transition duration-600">
+                        <div class="w-12 h-12 my-8 bg-gray-800 rounded-lg group-hover:bg-[#FF014F]"></div>
+                        <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-[#FF014F]">Frontend Development
+                        </h3>
+                        <p class="text-gray-400 group-hover:text-gray-100 leading-7 mb-8">
+                            Building modern, responsive, and interactive user interfaces with Vue.js. I focus on creating intuitive designs that enhance user engagement and satisfaction.
+                        </p>
+                        <a href="#"
+                            class=" text-[#212428] text-xl group-hover:text-[#FF014F] transform-colors duration-300">
+                            <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div
+                    class="rounded-2xl bg-[#212428] hover:bg-[#1A1C20] shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33] transition-all duration-300 group cursor-pointer">
+                    <div class="p-10 hover:-translate-y-6 transition duration-600">
+                        <div class="w-12 h-12 my-8 bg-gray-800 rounded-lg group-hover:bg-[#FF014F]"></div>
+                        <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-[#FF014F]">Full Stack Integration
+                        </h3>
+                        <p class="text-gray-400 group-hover:text-gray-100 leading-7 mb-8">
+                            Combining frontend and backend expertise to deliver seamless, end-to-end web applications. I ensure smooth communication between the user interface and server logic.
+                        </p>
+                        <a href="#"
+                            class=" text-[#212428] text-xl group-hover:text-[#FF014F] transform-colors duration-300">
+                            <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -82,63 +111,42 @@
             <!-- Filter Tabs (All Project Selected) -->
             <div class="flex justify-center gap-4 mb-16 flex-wrap">
                 <!-- All Project (Active) -->
-                <button
-                    class="px-8 py-4 rounded-lg font-bold text-[#FF014F] bg-[#212428] border border-[#FF014F] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33]">
+                <button @click="activePortfolio = 'project'" :aria-selected="activePortfolio === 'project'"
+                    class="px-8 py-4 rounded-lg font-bold text-gray-400 aria-selected:text-[#FF014F] bg-[#212428] hover:bg-[#1A1C20] aria-selected:bg-[#1A1C20] aria-selected:border aria-selected:border-[#FF014F] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] hover:text-[#FF014F] hover:-translate-y-1 transition-all duration-300">
                     All Project
                 </button>
 
                 <!-- Other Tabs -->
-                <button
-                    class="px-8 py-4 rounded-lg font-bold text-gray-400 bg-[#212428] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] hover:text-[#FF014F] transition">External
+                <button @click="activePortfolio = 'external'" :aria-selected="activePortfolio === 'external'"
+                    class="px-8 py-4 rounded-lg font-bold text-gray-400 aria-selected:text-[#FF014F] bg-[#212428] hover:bg-[#1A1C20] aria-selected:bg-[#1A1C20] aria-selected:border aria-selected:border-[#FF014F] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] hover:text-[#FF014F] hover:-translate-y-1 transition-all duration-300">External
                     Link</button>
-                <button
-                    class="px-8 py-4 rounded-lg font-bold text-gray-400 bg-[#212428] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] hover:text-[#FF014F] transition">Gallery</button>
-                <button
-                    class="px-8 py-4 rounded-lg font-bold text-gray-400 bg-[#212428] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] hover:text-[#FF014F] transition">Image</button>
-                <button
-                    class="px-8 py-4 rounded-lg font-bold text-gray-400 bg-[#212428] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] hover:text-[#FF014F] transition">Standard</button>
-                <button
-                    class="px-8 py-4 rounded-lg font-bold text-gray-400 bg-[#212428] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] hover:text-[#FF014F] transition">Video</button>
+                <button @click="activePortfolio = 'gallery'" :aria-selected="activePortfolio === 'gallery'"
+                    class="px-8 py-4 rounded-lg font-bold text-gray-400 aria-selected:text-[#FF014F] bg-[#212428] hover:bg-[#1A1C20] aria-selected:bg-[#1A1C20] aria-selected:border aria-selected:border-[#FF014F] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] hover:text-[#FF014F] hover:-translate-y-1 transition-all duration-300">Gallery</button>
+                <button @click="activePortfolio = 'image'" :aria-selected="activePortfolio === 'image'"
+                    class="px-8 py-4 rounded-lg font-bold text-gray-400 aria-selected:text-[#FF014F] bg-[#212428] hover:bg-[#1A1C20] aria-selected:bg-[#1A1C20] aria-selected:border aria-selected:border-[#FF014F] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] hover:text-[#FF014F] hover:-translate-y-1 transition-all duration-300">Image</button>
+                <button @click="activePortfolio = 'standard'" :aria-selected="activePortfolio === 'standard'"
+                    class="px-8 py-4 rounded-lg font-bold text-gray-400 aria-selected:text-[#FF014F] bg-[#212428] hover:bg-[#1A1C20] aria-selected:bg-[#1A1C20] aria-selected:border aria-selected:border-[#FF014F] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] hover:text-[#FF014F] hover:-translate-y-1 transition-all duration-300">Standard</button>
+                <button @click="activePortfolio = 'video'" :aria-selected="activePortfolio === 'video'"
+                    class="px-8 py-4 rounded-lg font-bold text-gray-400 aria-selected:text-[#FF014F] bg-[#212428] hover:bg-[#1A1C20] aria-selected:bg-[#1A1C20] aria-selected:border aria-selected:border-[#FF014F] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] hover:text-[#FF014F] hover:-translate-y-1 transition-all duration-300">Video</button>
             </div>
 
             <!-- Projects Grid -->
-            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div v-if="activePortfolio === 'project'" class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
 
-                <!-- Card 1: Gallery -->
-                <div class="p-6 rounded-2xl bg-[#212428] shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
-                    <div class="mb-6 h-60 bg-gray-800 rounded-xl overflow-hidden">
-                        <img src="https://via.placeholder.com/400" class="w-full h-full object-cover">
+                <!-- Project -->
+                
+                    <div v-for="project in projects.filter(project => project.status === 'Published')" :key="project.id" 
+                        class="group p-6 rounded-2xl bg-[#212428] hover:bg-[#1A1C20] shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
+                        <div class="mb-6 h-60 bg-gray-800 rounded-xl overflow-hidden">
+                            <img :src="project.image" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-[#FF014F] text-xs font-bold uppercase tracking-wider">{{ project.category
+                                }}</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-100">{{ project.title }}</h3>
                     </div>
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-[#FF014F] text-xs font-bold uppercase tracking-wider">Gallery</span>
-                        <span class="text-gray-400 text-sm">❤️ 1821</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-100">NFT Dashboard Application Development.</h3>
-                </div>
-
-                <!-- Card 2: Video -->
-                <div class="p-6 rounded-2xl bg-[#212428] shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
-                    <div class="mb-6 h-60 bg-gray-800 rounded-xl flex items-center justify-center">
-                        <span class="text-gray-500">Video Placeholder</span>
-                    </div>
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-[#FF014F] text-xs font-bold uppercase tracking-wider">Video</span>
-                        <span class="text-gray-400 text-sm">❤️ **</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-100">Online Food Delivery Mobile App Design.</h3>
-                </div>
-
-                <!-- Card 3: External Link -->
-                <div class="p-6 rounded-2xl bg-[#212428] shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
-                    <div class="mb-6 h-60 bg-gray-800 rounded-xl overflow-hidden">
-                        <img src="https://via.placeholder.com/400" class="w-full h-full object-cover">
-                    </div>
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-[#FF014F] text-xs font-bold uppercase tracking-wider">External Link</span>
-                        <span class="text-gray-400 text-sm">❤️ 855</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-100">Travel App Design Creativity & Application.</h3>
-                </div>
+                
 
             </div>
         </section>
@@ -247,7 +255,7 @@
                                     <h3 class="text-2xl font-bold text-white">{{ resume.title }}</h3>
                                     <span
                                         class="bg-[#191b1e] text-[#FF014F] px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">
-                                        {{ resume.result }} 
+                                        {{ resume.result }}
                                     </span>
                                 </div>
                                 <p class="text-gray-400 text-sm mb-4">{{ resume.institution }} - ({{ resume.period }})
@@ -401,11 +409,12 @@ export default {
             skills: [],
             resumes: [],
             text: '',
-            words: ['Full Stack Developer.', 'Professional Coder.', 'Problem Solver.'],
+            words: ['Full Stack Developer.', 'Problem Solver.', 'Professional Coder.'],
             wordIndex: 0,
             isDeleting: false,
             speed: 150,
-            activeTab: 'education'
+            activeTab: 'education',
+            activePortfolio: 'project'
         };
     },
     mounted() {
@@ -447,7 +456,7 @@ export default {
 
             if (this.isDeleting) {
                 this.text = currentWord.substring(0, this.text.length - 1);
-                this.speed = 100;
+                this.speed = 150;
             } else {
                 this.text = currentWord.substring(0, this.text.length + 1);
                 this.speed = 150;
@@ -490,4 +499,5 @@ html {
 section {
     scroll-margin-top: 80px;
 }
+
 </style>
