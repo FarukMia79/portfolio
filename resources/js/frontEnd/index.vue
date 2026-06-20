@@ -5,7 +5,9 @@
         <nav class="sticky top-0 z-50 bg-[#212428]/80 backdrop-blur-md border-b border-gray-700">
             <div class="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
                 <div class="text-2xl font-bold text-white">FARUK.</div>
-                <div class="flex items-center gap-8 text-gray-300 font-medium uppercase text-sm tracking-widest">
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8 text-gray-300 font-medium uppercase text-sm tracking-widest">
                     <a href="#" @click.prevent="scrollToSection('home')" class="hover:text-red-500 transition">Home</a>
                     <a href="#" @click.prevent="scrollToSection('features')"
                         class="hover:text-[#FF014F] transition">Features</a>
@@ -19,28 +21,53 @@
                         class="px-5 py-2 border border-[#FF014F] text-[#FF014F] rounded hover:bg-[#FF014F] hover:text-white transition">Download
                         CV</a>
                 </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-white text-2xl focus:outline-none">
+                    <span v-if="!mobileMenuOpen">☰</span>
+                    <span v-else>✕</span>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div v-if="mobileMenuOpen" class="md:hidden bg-[#212428] border-t border-gray-700">
+                <div class="flex flex-col px-6 py-4 space-y-4 text-gray-300 font-medium uppercase text-sm tracking-widest">
+                    <a href="#" @click.prevent="scrollToSection('home'); mobileMenuOpen = false" class="hover:text-red-500 transition">Home</a>
+                    <a href="#" @click.prevent="scrollToSection('features'); mobileMenuOpen = false"
+                        class="hover:text-[#FF014F] transition">Features</a>
+                    <a href="#" @click.prevent="scrollToSection('portfolio'); mobileMenuOpen = false"
+                        class="hover:text-[#FF014F] transition">Portfolio</a>
+                    <a href="#" @click.prevent="scrollToSection('resume'); mobileMenuOpen = false"
+                        class="hover:text-[#FF014F] transition">Resume</a>
+                    <a href="#" @click.prevent="scrollToSection('contact'); mobileMenuOpen = false"
+                        class="hover:text-[#FF014F] transition">Contact</a>
+                    <a href="/uploads/files/Faruk CV.pdf" download="Faruk CV.pdf"
+                        class="px-5 py-2 border border-[#FF014F] text-[#FF014F] rounded hover:bg-[#FF014F] hover:text-white transition text-center">Download
+                        CV</a>
+                </div>
             </div>
         </nav>
 
         <!-- Hero Section -->
-        <section id="home" class="max-w-6xl mx-auto px-6 py-24 flex items-center">
-            <div class="w-1/2 space-y-4">
+        <section id="home" class="max-w-6xl mx-auto px-6 py-24 flex flex-col-reverse md:flex-row items-center">
+            <div class="w-full md:w-1/2 space-y-4">
                 <h4 class="text-sm tracking-[3px] text-gray-400 uppercase">Welcome to my world</h4>
-                <h1 class="text-6xl font-bold leading-[1.2]">Hi, I'm <span class="text-[#FF014F]">Faruk Mia</span>
+                <h1 class="md:text-6xl text-5xl font-bold leading-[1.2]">Hi, I'm <span class="text-[#FF014F]">Faruk
+                        Mia</span>
                 </h1>
-                <h2 class="text-5xl font-bold h-16">
+                <h2 class="md:text-5xl text-4xl font-bold h-16">
                     a <span class="text-[#FF014F]">{{ text }}</span><span class="animate-pulse">|</span>
                 </h2>
-                <p class="text-lg text-gray-400 leading-8 pt-4">
+                <p class="text-lg text-gray-400 leading-8 pt-4 pb-4">
                     I'm a passionate Full Stack Web Developer with expertise in building modern, responsive, and
                     user-friendly web applications using Laravel and Vue.js.
                 </p>
             </div>
-            <div class="w-1/2 flex justify-end">
+            <div class="w-full md:w-1/2 flex justify-center md:justify-end md:mb-0 mb-10">
                 <div
-                    class="w-[400px] h-[500px] bg-[#212428] rounded-2xl shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
-                    <!-- আপনার ছবি এখানে দিবেন -->
-                    <img src="../../../public/uploads/images/faruk-mia.png" alt="Faruk Mia" class="w-full h-full rounded-xl">
+                    class="md:w-[400px] w-full h-[500px] bg-[#212428] rounded-2xl shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
+                    <img src="../../../public/uploads/images/faruk-mia.png" alt="Faruk Mia"
+                        class="w-full h-full rounded-xl">
                 </div>
             </div>
         </section>
@@ -50,7 +77,7 @@
             <h4 class="text-[#FF014F] text-sm tracking-[2px] uppercase">Features</h4>
             <h2 class="text-5xl font-bold mb-16">What I Do</h2>
 
-            <div class="grid grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div
                     class="rounded-2xl bg-[#212428] hover:bg-[#1A1C20] shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33] transition-all duration-300 group cursor-pointer">
                     <div class="p-10 hover:-translate-y-6 transition duration-600">
@@ -58,7 +85,8 @@
                         <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-[#FF014F]">Backend Development
                         </h3>
                         <p class="text-gray-400 group-hover:text-gray-100 leading-7 mb-8">
-                            Developing robust and scalable server-side applications using PHP and Laravel. I focus on creating secure, efficient, and maintainable code that powers modern web applications.
+                            Developing robust and scalable server-side applications using PHP and Laravel. I focus on
+                            creating secure, efficient, and maintainable code that powers modern web applications.
                         </p>
                         <a href="#"
                             class=" text-[#212428] text-xl group-hover:text-[#FF014F] transform-colors duration-300">
@@ -73,7 +101,8 @@
                         <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-[#FF014F]">Frontend Development
                         </h3>
                         <p class="text-gray-400 group-hover:text-gray-100 leading-7 mb-8">
-                            Building modern, responsive, and interactive user interfaces with Vue.js. I focus on creating intuitive designs that enhance user engagement and satisfaction.
+                            Building modern, responsive, and interactive user interfaces with Vue.js. I focus on
+                            creating intuitive designs that enhance user engagement and satisfaction.
                         </p>
                         <a href="#"
                             class=" text-[#212428] text-xl group-hover:text-[#FF014F] transform-colors duration-300">
@@ -88,7 +117,8 @@
                         <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-[#FF014F]">Full Stack Integration
                         </h3>
                         <p class="text-gray-400 group-hover:text-gray-100 leading-7 mb-8">
-                            Combining frontend and backend expertise to deliver seamless, end-to-end web applications. I ensure smooth communication between the user interface and server logic.
+                            Combining frontend and backend expertise to deliver seamless, end-to-end web applications. I
+                            ensure smooth communication between the user interface and server logic.
                         </p>
                         <a href="#"
                             class=" text-[#212428] text-xl group-hover:text-[#FF014F] transform-colors duration-300">
@@ -134,19 +164,20 @@
             <div v-if="activePortfolio === 'project'" class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
 
                 <!-- Project -->
-                
-                    <div v-for="project in projects.filter(project => project.status === 'Published')" :key="project.id" 
-                        class="group p-6 rounded-2xl bg-[#212428] hover:bg-[#1A1C20] shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
-                        <div class="mb-6 h-60 bg-gray-800 rounded-xl overflow-hidden">
-                            <img :src="project.image" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        </div>
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="text-[#FF014F] text-xs font-bold uppercase tracking-wider">{{ project.category
-                                }}</span>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-100">{{ project.title }}</h3>
+
+                <div v-for="project in projects.filter(project => project.status === 'Published')" :key="project.id"
+                    class="group p-6 rounded-2xl bg-[#212428] hover:bg-[#1A1C20] shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
+                    <div class="mb-6 h-60 bg-gray-800 rounded-xl overflow-hidden">
+                        <img :src="project.image"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
-                
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-[#FF014F] text-xs font-bold uppercase tracking-wider">{{ project.category
+                            }}</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-100">{{ project.title }}</h3>
+                </div>
+
 
             </div>
         </section>
@@ -414,7 +445,8 @@ export default {
             isDeleting: false,
             speed: 150,
             activeTab: 'education',
-            activePortfolio: 'project'
+            activePortfolio: 'project',
+            mobileMenuOpen: false,
         };
     },
     mounted() {
@@ -499,5 +531,4 @@ html {
 section {
     scroll-margin-top: 80px;
 }
-
 </style>
