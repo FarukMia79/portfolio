@@ -2,12 +2,14 @@
     <div class="bg-[#212428] min-h-screen text-white font-sans">
 
         <!-- Navbar -->
-        <nav class="sticky top-0 z-50 bg-[#212428]/80 backdrop-blur-md border-b border-gray-700">
+        <nav class="sticky top-0 z-50 bg-[#212428]/80 backdrop-blur-md md:border-b border-gray-700">
             <div class="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
-                <div class="text-2xl font-bold text-white">FARUK.</div>
-                
+                <div class="hidden md:block text-2xl font-bold text-white">FARUK.</div>
+                <img src="../../../public/uploads/images/profile.png" alt="FA" class="md:hidden w-12 h-12 rounded-full border-4 border-gray-600">
+
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center gap-8 text-gray-300 font-medium uppercase text-sm tracking-widest">
+                <div
+                    class="hidden md:flex items-center gap-8 text-gray-300 font-medium uppercase text-sm tracking-widest">
                     <a href="#" @click.prevent="scrollToSection('home')" class="hover:text-red-500 transition">Home</a>
                     <a href="#" @click.prevent="scrollToSection('features')"
                         class="hover:text-[#FF014F] transition">Features</a>
@@ -22,17 +24,34 @@
                         CV</a>
                 </div>
 
-                <!-- Mobile Hamburger Button -->
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-white text-2xl focus:outline-none">
-                    <span v-if="!mobileMenuOpen">☰</span>
-                    <span v-else>✕</span>
-                </button>
+
+                <div @click="mobileMenuOpen = !mobileMenuOpen" class="space-y-4">
+                    
+                    <div class="flex justify-center md:hidden md:justify-start gap-4">
+                        <a href="/uploads/files/Faruk CV.pdf" download="Faruk CV.pdf"
+                            class="p-3 bg-[#191b1e] rounded shadow-[5px_5px_10px_#181a1d] text-sm text-[#FF014F] hover:text-[#FF014F] hover:-translate-y-1 transition duration-300">Download
+                            CV</a>
+                        <!-- Mobile Hamburger Button -->
+                        <button
+                            class="px-4 bg-[#191b1e] rounded-full shadow-[5px_5px_10px_#181a1d] hover:text-[#FF014F] hover:scale-110 transition duration-300">
+                            <span v-if="!mobileMenuOpen" class="text-[#FF014F]">☰</span>
+                            <span v-else class="text-[#FF014F]">✕</span>
+                        </button>
+                    </div>
+
+
+                </div>
+
+
+
             </div>
 
             <!-- Mobile Menu -->
-            <div v-if="mobileMenuOpen" class="md:hidden bg-[#212428] border-t border-gray-700">
-                <div class="flex flex-col px-6 py-4 space-y-4 text-gray-300 font-medium uppercase text-sm tracking-widest">
-                    <a href="#" @click.prevent="scrollToSection('home'); mobileMenuOpen = false" class="hover:text-red-500 transition">Home</a>
+            <div v-if="mobileMenuOpen" class="md:hidden border-t border-gray-700">
+                <div
+                    class="flex flex-col px-6 py-4 space-y-4 text-gray-300 font-medium uppercase text-sm tracking-widest">
+                    <a href="#" @click.prevent="scrollToSection('home'); mobileMenuOpen = false"
+                        class="hover:text-red-500 transition">Home</a>
                     <a href="#" @click.prevent="scrollToSection('features'); mobileMenuOpen = false"
                         class="hover:text-[#FF014F] transition">Features</a>
                     <a href="#" @click.prevent="scrollToSection('portfolio'); mobileMenuOpen = false"
@@ -41,9 +60,18 @@
                         class="hover:text-[#FF014F] transition">Resume</a>
                     <a href="#" @click.prevent="scrollToSection('contact'); mobileMenuOpen = false"
                         class="hover:text-[#FF014F] transition">Contact</a>
-                    <a href="/uploads/files/Faruk CV.pdf" download="Faruk CV.pdf"
-                        class="px-5 py-2 border border-[#FF014F] text-[#FF014F] rounded hover:bg-[#FF014F] hover:text-white transition text-center">Download
-                        CV</a>
+
+                    <div class="space-y-4">
+                        <div class="text-sm font-medium text-gray-300 border-t border-gray-700 pt-4">FIND WITH ME</div>
+                        <div class="flex md:justify-start gap-4">
+                            <a href="#"
+                                class="p-3 bg-[#191b1e] rounded shadow-[5px_5px_10px_#181a1d] hover:text-[#FF014F] hover:-translate-y-1 transition duration-300"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#"
+                                class="p-3 bg-[#191b1e] rounded shadow-[5px_5px_10px_#181a1d] hover:text-[#FF014F] hover:-translate-y-1 transition duration-300"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="#"
+                                class="p-3 bg-[#191b1e] rounded shadow-[5px_5px_10px_#181a1d] hover:text-[#FF014F] hover:-translate-y-1 transition duration-300"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -173,7 +201,7 @@
                     </div>
                     <div class="flex justify-between items-center mb-4">
                         <span class="text-[#FF014F] text-xs font-bold uppercase tracking-wider">{{ project.category
-                            }}</span>
+                        }}</span>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-100">{{ project.title }}</h3>
                 </div>
