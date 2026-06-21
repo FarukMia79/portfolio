@@ -7,6 +7,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+// migrate route
 Route::get('/migrate', function () {
     Artisan::call('migrate', ['--force' => true]);
     return "Migration successful!";
