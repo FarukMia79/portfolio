@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan; 
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -11,7 +12,7 @@ Route::get('/user', function (Request $request) {
 Route::get('/migrate', function () {
     Artisan::call('migrate', ['--force' => true]);
     return "Migration successful!";
-
+}); 
 
 // Admin APIs
 Route::apiResource('projects', \App\Http\Controllers\Api\ProjectController::class);
