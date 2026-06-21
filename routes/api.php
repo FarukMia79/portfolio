@@ -7,6 +7,10 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+Route::get('/migrate', function () {
+    Artisan::call('migrate', ['--force' => true]);
+    return "Migration successful!";
+
 
 // Admin APIs
 Route::apiResource('projects', \App\Http\Controllers\Api\ProjectController::class);
