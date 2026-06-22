@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if (config('app.env') === 'production') {
             if (!is_dir(config('view.compiled'))) {
+                URL::forceScheme('https');
                 mkdir(config('view.compiled'), 0755, true);
             }
         }
