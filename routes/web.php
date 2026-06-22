@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Artisan;
 
 Route::get('/migrate', function () {
     try {
-        Artisan::call('migrate', ['--force' => true]);
-        return "Migration successful! <br><br> Output: " . Artisan::output();
+        \Artisan::call('migrate', ['--force' => true]);
+        return "Migration successful! <br><br> Output: " . \Artisan::output();
     } catch (\Exception $e) {
-        return "Error: " . $e->getMessage();
+        return "Database Error: " . $e->getMessage();
     }
 });
 
