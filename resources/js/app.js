@@ -7,6 +7,8 @@ import router from "./router";
 // import axios & AppStorage
 import axios from 'axios';
 import AppStorage from './Helpers/AppStorage';
+
+
 // globally set token using Interceptors
 axios.interceptors.request.use(function (config) {
   const token = AppStorage.getToken();
@@ -22,7 +24,7 @@ axios.interceptors.request.use(function (config) {
 });
 
 // import notification class
-import Notification from './Helpers/Notification';
+import Notification from '@/Helpers/Notification';
 window.Notification = Notification;
 
 

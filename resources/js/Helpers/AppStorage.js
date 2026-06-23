@@ -1,19 +1,31 @@
 class AppStorage {
-    constructor() {
-        this.storage = window.localStorage;
+    storeToken(token) {
+        localStorage.setItem('token', token);
     }
 
-    setToken(token) {
-        this.storage.setItem('token', token);
+    storeUser(user) {
+        localStorage.setItem('user', JSON.stringify(user));
+    }
+
+    store(token, user) {
+        this.storeToken(token);
+        this.storeUser(user);
+    }
+
+    clear() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
     }
 
     getToken() {
-        return this.storage.getItem('token');
+        return localStorage.getItem('token');
     }
 
-    removeToken() {
-        this.storage.removeItem('token');
+    getUser() {
+        const user = localStorage.getItem('user');
+        return user ? JSON.parse(user) : null;
     }
+
 }
 
 export default new AppStorage();

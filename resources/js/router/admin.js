@@ -1,9 +1,12 @@
-import adminLayout from '../layouts/adminLayout.vue';
+// router/admin.js
+
+import AdminLayout from '../layouts/adminLayout.vue'; 
 
 const adminRouter = [
     {
         path: '/admin',
-        component: adminLayout,
+        component: AdminLayout,
+        meta: { requiresAuth: true },
         children: [
             { path: '', name: 'adminDashboard', component: () => import('../backEnd/adminDashboard.vue') },
             { path: 'projects', name: 'adminProjects', component: () => import('../backEnd/page/project/AdminProjects.vue') },
@@ -18,6 +21,13 @@ const adminRouter = [
             { path: 'messages', name: 'adminMessages', component: () => import('../backEnd/page/message/AdminMessages.vue') },
             { path: 'settings', name: 'adminSettings', component: () => import('../backEnd/page/setting/AdminSettings.vue') },
         ]
+    },
+
+    {
+        path: '/admin/login',
+        name: 'adminLogin',
+        component: () => import('../backEnd/auth/adminLogin.vue'),
+        meta: { guest: true } 
     }
 ];
 

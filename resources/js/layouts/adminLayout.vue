@@ -41,7 +41,7 @@
                 <h2 class="text-xl font-semibold text-gray-800">Overview</h2>
                 <div class="flex items-center gap-4">
                     <div class="text-right">
-                        <p class="text-sm font-bold text-gray-700">Faruk Mia</p>
+                        <p class="text-sm font-bold text-gray-700">{{ user.name }}</p>
                         <p class="text-xs text-gray-500">Administrator</p>
                     </div>
                     <img src="https://ui-avatars.com/api/?name=Faruk+Mia" class="w-10 h-10 rounded-full border">
@@ -57,8 +57,55 @@
 </template>
 
 <script>
-export default {
+import AppStorage from '../Helpers/AppStorage';
+import Notification from '../Helpers/notification';
 
+export default {
+    data() {
+        return {
+            user: {}
+        }
+    },
+    methods: {
+
+        loadUser() {
+            const localUser = AppStorage.getUser();
+            if (localUser) {
+                this.user = localUser;
+            }
+
+            axios.get('/api/user')
+                .then(response => {
+                    this.user = response.data;
+                    AppStorage.storeUser(response.data);
+                })
+                .catch(error => {
+                    console.error("User load failed:", error);
+                });
+        },
+
+        logout() {
+            axios.post('/api/logout')
+                .then(response => {
+                    AppStorage.clear();
+                    this.$router.push('/admin/login');
+                    Notification.success('Logout successful');
+                })
+                .catch(error => {
+                    AppStorage.clear();
+                    console.error("Logout failed:", error);
+                    Notification.error('Logout failed');
+                });
+        }
+    },
+    mounted() {
+        if (!AppStorage.getToken()) {
+            AppStorage.clear();
+            this.$router.push('/admin/login');
+        } else {
+            this.loadUser();
+        }
+    }
 }
 </script>
 
