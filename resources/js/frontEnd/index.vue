@@ -5,7 +5,8 @@
         <nav class="sticky top-0 z-50 bg-[#212428]/80 backdrop-blur-md md:border-b border-gray-700">
             <div class="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
                 <div class="hidden md:block text-2xl font-bold text-white">FARUK.</div>
-                <img src="../../../public/uploads/images/profile.png" alt="FA" class="md:hidden w-12 h-12 rounded-full border-4 border-gray-600">
+                <img src="../../../public/uploads/images/profile.png" alt="FA"
+                    class="md:hidden w-12 h-12 rounded-full border-4 border-gray-600">
 
                 <!-- Desktop Menu -->
                 <div
@@ -26,7 +27,7 @@
 
 
                 <div @click="mobileMenuOpen = !mobileMenuOpen" class="space-y-4">
-                    
+
                     <div class="flex justify-center md:hidden md:justify-start gap-4">
                         <a href="/uploads/files/Faruk CV.pdf" download="Faruk CV.pdf"
                             class="p-3 bg-[#191b1e] rounded shadow-[5px_5px_10px_#181a1d] text-sm text-[#FF014F] hover:text-[#FF014F] hover:-translate-y-1 transition duration-300">Download
@@ -65,11 +66,14 @@
                         <div class="text-sm font-medium text-gray-300 border-t border-gray-700 pt-4">FIND WITH ME</div>
                         <div class="flex md:justify-start gap-4">
                             <a href="#"
-                                class="p-3 bg-[#191b1e] rounded shadow-[5px_5px_10px_#181a1d] hover:text-[#FF014F] hover:-translate-y-1 transition duration-300"><i class="fa-brands fa-facebook-f"></i></a>
+                                class="p-3 bg-[#191b1e] rounded shadow-[5px_5px_10px_#181a1d] hover:text-[#FF014F] hover:-translate-y-1 transition duration-300"><i
+                                    class="fa-brands fa-facebook-f"></i></a>
                             <a href="#"
-                                class="p-3 bg-[#191b1e] rounded shadow-[5px_5px_10px_#181a1d] hover:text-[#FF014F] hover:-translate-y-1 transition duration-300"><i class="fa-brands fa-x-twitter"></i></a>
+                                class="p-3 bg-[#191b1e] rounded shadow-[5px_5px_10px_#181a1d] hover:text-[#FF014F] hover:-translate-y-1 transition duration-300"><i
+                                    class="fa-brands fa-x-twitter"></i></a>
                             <a href="#"
-                                class="p-3 bg-[#191b1e] rounded shadow-[5px_5px_10px_#181a1d] hover:text-[#FF014F] hover:-translate-y-1 transition duration-300"><i class="fa-brands fa-linkedin-in"></i></a>
+                                class="p-3 bg-[#191b1e] rounded shadow-[5px_5px_10px_#181a1d] hover:text-[#FF014F] hover:-translate-y-1 transition duration-300"><i
+                                    class="fa-brands fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
@@ -201,7 +205,7 @@
                     </div>
                     <div class="flex justify-between items-center mb-4">
                         <span class="text-[#FF014F] text-xs font-bold uppercase tracking-wider">{{ project.category
-                        }}</span>
+                            }}</span>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-100">{{ project.title }}</h3>
                 </div>
@@ -375,22 +379,24 @@
 
                 <!-- Right: Contact Form -->
                 <div class="p-8 rounded-2xl bg-[#212428] shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33]">
-                    <form class="space-y-6">
+                    <form @submit.prevent="submitContactForm" class="space-y-6">
                         <div class="grid grid-cols-2 gap-6">
-                            <input type="text" placeholder="YOUR NAME"
+                            <input type="text" placeholder="YOUR NAME" v-model="form.name"
                                 class="w-full p-4 bg-[#191b1e] rounded-lg border border-gray-700 focus:border-[#FF014F] outline-none">
-                            <input type="text" placeholder="PHONE NUMBER"
+                            <input type="tel" placeholder="PHONE NUMBER" v-model="form.phone"
                                 class="w-full p-4 bg-[#191b1e] rounded-lg border border-gray-700 focus:border-[#FF014F] outline-none">
                         </div>
-                        <input type="email" placeholder="EMAIL"
+                        <input type="email" placeholder="EMAIL" v-model="form.email"
                             class="w-full p-4 bg-[#191b1e] rounded-lg border border-gray-700 focus:border-[#FF014F] outline-none">
-                        <input type="text" placeholder="SUBJECT"
+                        <input type="text" placeholder="SUBJECT" v-model="form.subject"
                             class="w-full p-4 bg-[#191b1e] rounded-lg border border-gray-700 focus:border-[#FF014F] outline-none">
-                        <textarea placeholder="YOUR MESSAGE" rows="4"
+                        <textarea placeholder="YOUR MESSAGE" rows="4" v-model="form.message"
                             class="w-full p-4 bg-[#191b1e] rounded-lg border border-gray-700 focus:border-[#FF014F] outline-none"></textarea>
-                        <button
+                        <button type="submit"
                             class="w-full py-4 bg-[#212428] shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] rounded-lg font-bold text-[#FF014F] hover:text-white transition">SEND
                             MESSAGE</button>
+
+                        <span v-if="msg" class="text-red-500">{{ msg }}</span>
                     </form>
                 </div>
             </div>
@@ -464,6 +470,13 @@
 export default {
     data() {
         return {
+            form: {
+                name: '',
+                phone: '',
+                email: '',
+                subject: '',
+                message: ''
+            },
             projects: [],
             skills: [],
             resumes: [],
@@ -472,6 +485,7 @@ export default {
             wordIndex: 0,
             isDeleting: false,
             speed: 150,
+            msg: '',
             activeTab: 'education',
             activePortfolio: 'project',
             mobileMenuOpen: false,
@@ -535,6 +549,28 @@ export default {
         scrollToSection(id) {
             const element = document.getElementById(id);
             if (element) element.scrollIntoView({ behavior: 'smooth' });
+        },
+        submitContactForm() {
+            this.msg = "Sending...";
+
+            axios.post('/api/contact-submit', this.form)
+                .then(response => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Message Sent!',
+                        text: response.data.message,
+                        background: '#212428',
+                        color: '#fff',
+                        confirmButtonColor: '#FF014F'
+                    });
+
+                    this.form = { name: '', phone: '', email: '', subject: '', message: '' };
+                    this.msg = "";
+                })
+                .catch(error => {
+                    this.msg = "";
+                    console.log(error);
+                });
         }
     },
     computed: {

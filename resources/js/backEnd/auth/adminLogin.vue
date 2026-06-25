@@ -33,11 +33,6 @@
                     SIGN IN
                 </button>
             </form>
-
-            <!-- Footer Link -->
-            <div class="mt-8 text-center">
-                <a href="#" class="text-gray-500 text-xs hover:text-[#FF014F] transition">Forgot Password?</a>
-            </div>
         </div>
     </div>
 </template>

@@ -1,9 +1,9 @@
-import userLayout from '../layouts/userLayout.vue';
+import UserLayout from '../layouts/userLayout.vue';
 
 const userRouter = [
     {
         path: '/',
-        component: userLayout,
+        component: UserLayout,
         children: [
             { path: '', name: 'home', component: () => import('../frontEnd/index.vue') },
         ]
