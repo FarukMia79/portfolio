@@ -94,6 +94,17 @@
                     I'm a passionate Full Stack Web Developer with expertise in building modern, responsive, and
                     user-friendly web applications using Laravel and Vue.js.
                 </p>
+
+                <div class="space-y-4">
+                    <div class="flex justify-start gap-4">
+                        <a href="https://api.whatsapp.com/send?phone=8801790647979" target="_blank" title="WhatsApp"
+                            class="p-3 bg-[#191b1e] rounded shadow-[5px_5px_10px_#181a1d] hover:text-[#FF014F] hover:-translate-y-1 transition duration-300"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="www.linkedin.com/in/md-faruk-mia" target="_blank" title="LinkedIn"
+                            class="p-3 bg-[#191b1e] rounded shadow-[5px_5px_10px_#181a1d] hover:text-[#FF014F] hover:-translate-y-1 transition duration-300"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://github.com/FarukMia79" target="_blank" title="GitHub"
+                            class="p-3 bg-[#191b1e] rounded shadow-[5px_5px_10px_#181a1d] hover:text-[#FF014F] hover:-translate-y-1 transition duration-300"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
             </div>
             <div class="w-full md:w-1/2 flex justify-center md:justify-end md:mb-0 mb-10">
                 <div
