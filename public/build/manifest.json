@@ -1,0 +1,193 @@
+{
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400-BP5tdqmh.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-nyy7hhHF.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-DRAAbZTg.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2": {
+    "file": "assets/fa-v4compatibility-DD84SGiu.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
+  },
+  "public/uploads/images/faruk-mia.png": {
+    "file": "assets/faruk-mia-D1BKdZAW.png",
+    "src": "public/uploads/images/faruk-mia.png"
+  },
+  "public/uploads/images/profile.png": {
+    "file": "assets/profile-DlSqG48J.png",
+    "src": "public/uploads/images/profile.png"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-DlxoHD4x.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-u0Bl4nOm.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/frontEnd/index.vue",
+      "resources/js/backEnd/adminDashboard.vue",
+      "resources/js/backEnd/page/project/AdminProjects.vue",
+      "resources/js/backEnd/page/project/CreateProject.vue",
+      "resources/js/backEnd/page/project/EditProject.vue",
+      "resources/js/backEnd/page/skills/AdminSkills.vue",
+      "resources/js/backEnd/page/skills/CreateSkill.vue",
+      "resources/js/backEnd/page/skills/EditSkill.vue",
+      "resources/js/backEnd/page/resume/AdminResume.vue",
+      "resources/js/backEnd/page/resume/CreateResume.vue",
+      "resources/js/backEnd/page/resume/EditResume.vue",
+      "resources/js/backEnd/page/message/AdminMessages.vue",
+      "resources/js/backEnd/page/setting/AdminSettings.vue",
+      "resources/js/backEnd/auth/adminLogin.vue"
+    ]
+  },
+  "resources/js/backEnd/adminDashboard.vue": {
+    "file": "assets/adminDashboard-CZaIdPD_.js",
+    "name": "adminDashboard",
+    "src": "resources/js/backEnd/adminDashboard.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/backEnd/auth/adminLogin.vue": {
+    "file": "assets/adminLogin-Cv7rjvZZ.js",
+    "name": "adminLogin",
+    "src": "resources/js/backEnd/auth/adminLogin.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/backEnd/page/message/AdminMessages.vue": {
+    "file": "assets/AdminMessages-CuPuRX6t.js",
+    "name": "AdminMessages",
+    "src": "resources/js/backEnd/page/message/AdminMessages.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "assets/AdminMessages-CXq0r6yL.css"
+    ]
+  },
+  "resources/js/backEnd/page/project/AdminProjects.vue": {
+    "file": "assets/AdminProjects-D9ugp78T.js",
+    "name": "AdminProjects",
+    "src": "resources/js/backEnd/page/project/AdminProjects.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/backEnd/page/project/CreateProject.vue": {
+    "file": "assets/CreateProject-BX7UoneB.js",
+    "name": "CreateProject",
+    "src": "resources/js/backEnd/page/project/CreateProject.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/backEnd/page/project/EditProject.vue": {
+    "file": "assets/EditProject-C4rtdwsu.js",
+    "name": "EditProject",
+    "src": "resources/js/backEnd/page/project/EditProject.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/backEnd/page/resume/AdminResume.vue": {
+    "file": "assets/AdminResume-fI3UGzPd.js",
+    "name": "AdminResume",
+    "src": "resources/js/backEnd/page/resume/AdminResume.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/backEnd/page/resume/CreateResume.vue": {
+    "file": "assets/CreateResume-Dob_KtMW.js",
+    "name": "CreateResume",
+    "src": "resources/js/backEnd/page/resume/CreateResume.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/backEnd/page/resume/EditResume.vue": {
+    "file": "assets/EditResume-CCzWOYwP.js",
+    "name": "EditResume",
+    "src": "resources/js/backEnd/page/resume/EditResume.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/backEnd/page/setting/AdminSettings.vue": {
+    "file": "assets/AdminSettings-B_t6R-y-.js",
+    "name": "AdminSettings",
+    "src": "resources/js/backEnd/page/setting/AdminSettings.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/backEnd/page/skills/AdminSkills.vue": {
+    "file": "assets/AdminSkills-BJ9UNKaG.js",
+    "name": "AdminSkills",
+    "src": "resources/js/backEnd/page/skills/AdminSkills.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/backEnd/page/skills/CreateSkill.vue": {
+    "file": "assets/CreateSkill-D6cxuQLa.js",
+    "name": "CreateSkill",
+    "src": "resources/js/backEnd/page/skills/CreateSkill.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/backEnd/page/skills/EditSkill.vue": {
+    "file": "assets/EditSkill-Btke-x3H.js",
+    "name": "EditSkill",
+    "src": "resources/js/backEnd/page/skills/EditSkill.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/frontEnd/index.vue": {
+    "file": "assets/index-DmNenGY_.js",
+    "name": "index",
+    "src": "resources/js/frontEnd/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "assets/index-DeB63J5V.css"
+    ],
+    "assets": [
+      "assets/profile-DlSqG48J.png",
+      "assets/faruk-mia-D1BKdZAW.png"
+    ]
+  }
+}
