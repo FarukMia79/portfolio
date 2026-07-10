@@ -359,9 +359,9 @@
             <!-- CV Section -->
             <div v-if="activeTab === 'cv'" class="mt-12 w-full h-[800px] bg-white rounded-2xl shadow-lg">
                 <!-- PDF viewer -->
-                <iframe src="/uploads/files/Faruk CV.pdf" width="100%" height="100%" class="rounded-xl">
+                <iframe src="/uploads/files/CV Md Faruk Mia.pdf" width="100%" height="100%" class="rounded-xl">
                     This browser does not support PDFs. Please download the PDF to view it:
-                    <a href="/uploads/files/Faruk CV.pdf" class="text-blue-600 underline">Download PDF</a>
+                    <a href="/uploads/files/CV Md Faruk Mia.pdf" class="text-blue-600 underline">Download PDF</a>
                 </iframe>
             </div>
 
