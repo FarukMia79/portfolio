@@ -20,7 +20,7 @@
                         class="hover:text-[#FF014F] transition">Resume</a>
                     <a href="#" @click.prevent="scrollToSection('contact')"
                         class="hover:text-[#FF014F] transition">Contact</a>
-                    <a href="/uploads/files/CV Md Faruk Mia.pdf" download="CV Md Faruk Mia.pdf"
+                    <a href="/uploads/files/CV_Md_Faruk_Mia.pdf" download="CV_Md_Faruk_Mia.pdf"
                         class="px-5 py-2 border border-[#FF014F] text-[#FF014F] rounded hover:bg-[#FF014F] hover:text-white transition">Download
                         CV</a>
                 </div>
@@ -29,7 +29,7 @@
                 <div @click="mobileMenuOpen = !mobileMenuOpen" class="space-y-4">
 
                     <div class="flex justify-center md:hidden md:justify-start gap-4">
-                        <a href="/uploads/files/CV Md Faruk Mia.pdf" download="CV Md Faruk Mia.pdf"
+                        <a href="/uploads/files/CV_Md_Faruk_Mia.pdf" download="CV_Md_Faruk_Mia.pdf"
                             class="p-3 bg-[#191b1e] rounded shadow-[5px_5px_10px_#181a1d] text-sm text-[#FF014F] hover:text-[#FF014F] hover:-translate-y-1 transition duration-300">Download
                             CV</a>
                         <!-- Mobile Hamburger Button -->
@@ -359,9 +359,9 @@
             <!-- CV Section -->
             <div v-if="activeTab === 'cv'" class="mt-12 w-full h-[800px] bg-white rounded-2xl shadow-lg">
                 <!-- PDF viewer -->
-                <iframe src="/uploads/files/CV Md Faruk Mia.pdf" width="100%" height="100%" class="rounded-xl">
+                <iframe src="/uploads/files/CV_Md_Faruk_Mia.pdf" width="100%" height="100%" class="rounded-xl">
                     This browser does not support PDFs. Please download the PDF to view it:
-                    <a href="/uploads/files/CV Md Faruk Mia.pdf" class="text-blue-600 underline">Download PDF</a>
+                    <a href="/uploads/files/CV_Md_Faruk_Mia.pdf" class="text-blue-600 underline">Download PDF</a>
                 </iframe>
             </div>
 
