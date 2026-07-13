@@ -9,6 +9,8 @@ class Project extends Model
     protected $fillable = [
         'title',
         'category',
+        'github_link',
+        'live_demo_link',
         'description',
         'image',
         'status',

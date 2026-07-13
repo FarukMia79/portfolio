@@ -36,7 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/contact-messages/{id}/reply', [ContactController::class, 'reply']);
     Route::post('/contact-messages/{id}/read', [ContactController::class, 'markAsRead']);
 
-    Route::apiResource('projects', ProjectController::class)->except(['index', 'show']);
+    Route::apiResource('projects', ProjectController::class)->except(['index']);
     Route::apiResource('skills', SkillsController::class)->except(['index']);
     Route::apiResource('resumes', ResumeController::class)->except(['index']);
 });

@@ -35,6 +35,26 @@
                         </select>
                         <p v-if="errors.category" class="text-red-500 text-sm">{{ errors.category[0] }}</p>
                     </div>
+
+                    <!-- GitHub link -->
+                    <div class="space-y-2">
+                        <lebel class="text-sm font-semibold text-gray-600">GitHub Link</lebel>
+                        <input type="text"
+                            class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none transition"
+                            v-model="formData.github_link" placeholder="Enter GitHub link...">
+                        <small v-if="errors.github_link" class="text-red-500 text-sm">{{ errors.github_link[0]
+                            }}</small>
+                    </div>
+
+                    <!-- Live Demo Link -->
+                    <div class="space-y-2">
+                        <lebel class="text-sm font-semibold text-gray-600">Live Demo Link</lebel>
+                        <input type="text"
+                            class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none transition"
+                            v-model="formData.live_demo_link" placeholder="Enter Live Demo link...">
+                        <small v-if="errors.live_demo_link" class="text-red-500 text-sm">{{ errors.live_demo_link[0]
+                            }}</small>
+                    </div>
                     
                 </div>
 
@@ -99,6 +119,8 @@ export default {
             formData: {
                 title: '',
                 category: '',
+                github_link: '',
+                live_demo_link: '',
                 description: null,
                 image: null,
                 status: 'draft',
@@ -122,7 +144,9 @@ export default {
                     console.log("Server Response:", response.data);
                     this.formData.title = response.data.title;
                     this.formData.category = response.data.category;
-                    this.formData.description = response.data.description;
+                    this.formData.github_link = response.data.github_link || '';
+                    this.formData.live_demo_link = response.data.live_demo_link || '';
+                    this.formData.description = response.data.description || '';
                     this.ImagePreview = '/' + response.data.image;
                     this.formData.status = response.data.status;
                 })
@@ -134,6 +158,8 @@ export default {
             let Data = new FormData();
             Data.append('title', this.formData.title);
             Data.append('category', this.formData.category);
+            Data.append('github_link', this.formData.github_link || '');
+            Data.append('live_demo_link', this.formData.live_demo_link || '');
             Data.append('description', this.formData.description || '');
 
             if (this.formData.image) {

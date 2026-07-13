@@ -25,10 +25,12 @@
                         <select v-model="formData.category"
                             class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-red-500 outline-none transition">
                             <option value="">Select Category</option>
+                            <option value="Programming Languages">Programming Languages</option>
+                            <option value="Frameworks & Libraries">Frameworks & Libraries</option>
                             <option value="Backend">Backend</option>
-                            <option value="Frontend">Frontend</option>
                             <option value="Database">Database</option>
-                            <option value="Design">Design</option>
+                            <option value="Tools & Platforms">Tools & Platforms</option>
+                            <option value="Soft Skills">Soft Skills</option>
                         </select>
                     </div>
                 </div>

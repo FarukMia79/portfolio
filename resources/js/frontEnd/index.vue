@@ -219,6 +219,11 @@
                             }}</span>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-100">{{ project.title }}</h3>
+                    <div class="mt-4 flex items-center">
+                        <a :href="project.github_link" class="text-[#FF014F] hover:text-[#FF014F]/80 transition-colors cursor-pointer">GitHub</a>
+                        <span class="mx-2 text-gray-400">|</span>
+                        <a :href="project.live_link" class="text-[#FF014F] hover:text-[#FF014F]/80 transition-colors cursor-pointer">Live</a>
+                    </div>
                 </div>
 
 

@@ -24,11 +24,14 @@
                         <select v-model="formData.category"
                             class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-red-500 outline-none transition">
                             <option value="">Select Category</option>
-                            <option value="Frontend">Frontend</option>
+                            <option value="Programming Languages">Programming Languages</option>
+                            <option value="Frameworks & Libraries">Frameworks & Libraries</option>
                             <option value="Backend">Backend</option>
                             <option value="Database">Database</option>
-                            <option value="Design">Design</option>
+                            <option value="Tools & Platforms">Tools & Platforms</option>
+                            <option value="Soft Skills">Soft Skills</option>
                         </select>
+                        <small v-if="errors.category" class="text-red-500 text-sm">{{ errors.category[0] }}</small>
                     </div>
                 </div>
 
@@ -40,6 +43,7 @@
                     </div>
                     <input type="range" v-model="formData.level"
                         class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-red-600">
+                    <small v-if="errors.level" class="text-red-500 text-sm">{{ errors.level[0] }}</small>
                 </div>
 
                 <!-- Icon Upload -->
@@ -62,6 +66,7 @@
                             </div>
                         </label>
                     </div>
+                    <small v-if="errors.icon" class="text-red-500 text-sm">{{ errors.icon[0] }}</small>
                 </div>
 
                 <!-- Status Selection -->
@@ -119,7 +124,7 @@ export default {
             formData.append('name', this.formData.name);
             formData.append('category', this.formData.category);
             formData.append('level', this.formData.level);
-            formData.append('icon', this.formData.icon);
+            formData.append('icon', this.formData.icon || '');
             formData.append('status', this.formData.status);
             
             axios.post('/api/skills', formData)
