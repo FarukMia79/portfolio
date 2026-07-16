@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#212428] min-h-screen text-white font-sans">
+    <div class="bg-[#212428] min-h-screen text-white font-sans relative">
         <!-- Navbar -->
         <nav
             class="sticky top-0 z-50 bg-[#212428]/80 backdrop-blur-md md:border-b border-gray-700"
@@ -7,23 +7,26 @@
             <div
                 class="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center"
             >
+                <!-- Desktop Brand Logo (Side-by-Side) -->
                 <div class="hidden md:flex gap-3 items-center">
                     <img
                         src="../../../public/uploads/images/profile.png"
                         alt="FA"
                         class="w-12 h-12 rounded-full border-2 border-gray-600 hover:border-[#FF014F] transition duration-300"
                     />
-                    <div class="text-xl font-medium text-white tracking-wider">
+                    <div class="text-xl font-bold text-white tracking-wider">
                         FARUK
                     </div>
                 </div>
+
+                <!-- Mobile Avatar -->
                 <img
                     src="../../../public/uploads/images/profile.png"
                     alt="FA"
                     class="md:hidden w-12 h-12 rounded-full border-4 border-gray-600"
                 />
 
-                <!-- Desktop Menu -->
+                <!-- Desktop Menu (Pushed to Right) -->
                 <div
                     class="hidden md:flex items-center gap-8 text-gray-300 font-medium uppercase text-sm tracking-widest"
                 >
@@ -65,6 +68,7 @@
                     >
                 </div>
 
+                <!-- Mobile Menu Trigger Container (md:hidden to prevent layout blocking) -->
                 <div
                     @click="mobileMenuOpen = !mobileMenuOpen"
                     class="space-y-4 md:hidden"
@@ -602,6 +606,7 @@
                 </div>
             </div>
 
+            <!-- Experience Section -->
             <div
                 v-if="activeTab === 'experience'"
                 class="max-w-6xl mx-auto pb-12 px-6"
@@ -820,6 +825,162 @@
             </div>
         </section>
 
+        <!-- Scroll to Top Button (Bottom-Left) -->
+        <button
+            v-if="showScrollTop"
+            @click="scrollToTop"
+            class="fixed bottom-8 left-8 z-50 w-12 h-12 flex items-center justify-center bg-[#191b1e] text-white hover:text-[#FF014F] rounded-full shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] border border-gray-800 transition duration-300 hover:scale-110 cursor-pointer"
+            title="Scroll to Top"
+        >
+            <i class="fa fa-arrow-up text-lg"></i>
+        </button>
+
+        <!-- Floating AI Chatbot Container (Bottom-Right) -->
+        <div class="fixed bottom-8 right-8 z-50 flex flex-col items-end">
+            <!-- Hello Chat Bubble Notification -->
+            <div
+                v-if="showChatBubble"
+                class="bg-[#FF014F] text-white text-xs px-3 py-1.5 rounded-2xl mb-2 shadow-lg animate-bounce mr-2 relative"
+            >
+                Hello!
+                <div
+                    class="absolute -bottom-1 right-5 w-2 h-2 bg-[#FF014F] rotate-45"
+                ></div>
+            </div>
+
+            <!-- Chat Window -->
+            <div
+                v-if="isChatOpen"
+                class="mb-4 w-80 h-96 bg-[#212428] rounded-2xl shadow-[10px_10px_20px_#181a1d,-10px_-10px_20px_#2a2e33] border border-gray-800 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300"
+            >
+                <!-- Chat Header -->
+                <div
+                    class="p-4 bg-[#191b1e] border-b border-gray-800 flex justify-between items-center"
+                >
+                    <div class="flex items-center gap-2">
+                        <div
+                            class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"
+                        ></div>
+                        <span class="text-sm font-bold text-gray-200"
+                            >Faruk's AI Assistant</span
+                        >
+                    </div>
+                    <button
+                        @click="toggleChat"
+                        class="text-gray-400 hover:text-white text-lg font-bold"
+                    >
+                        &times;
+                    </button>
+                </div>
+
+                <!-- Chat Messages Body -->
+                <div
+                    ref="chatBody"
+                    class="flex-1 p-4 overflow-y-auto space-y-3 custom-scrollbar flex flex-col text-sm bg-[#212428]/40"
+                >
+                    <div
+                        v-for="(m, index) in chatMessages"
+                        :key="index"
+                        :class="[
+                            'max-w-[85%] p-3 rounded-2xl leading-relaxed whitespace-pre-wrap',
+                            m.sender === 'bot'
+                                ? 'bg-[#191b1e] text-gray-300 rounded-tl-none self-start mr-auto'
+                                : 'bg-[#FF014F] text-white rounded-tr-none self-end ml-auto',
+                        ]"
+                    >
+                        {{ m.text }}
+                    </div>
+                    <!-- Typing Indicator -->
+                    <div
+                        v-if="isTyping"
+                        class="max-w-[80%] p-3 rounded-2xl bg-[#191b1e] text-gray-300 rounded-tl-none self-start mr-auto flex gap-1 items-center"
+                    >
+                        <span
+                            class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"
+                            style="animation-delay: 0s"
+                        ></span>
+                        <span
+                            class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"
+                            style="animation-delay: 0.15s"
+                        ></span>
+                        <span
+                            class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"
+                            style="animation-delay: 0.3s"
+                        ></span>
+                    </div>
+                </div>
+
+                <!-- Quick Help Options -->
+                <div
+                    class="px-4 py-2 border-t border-gray-800/50 flex gap-2 overflow-x-auto whitespace-nowrap custom-scrollbar bg-[#212428]/80"
+                >
+                    <button
+                        @click="sendChatMessage('What are your skills?')"
+                        class="text-[10px] uppercase font-bold tracking-wider px-3 py-1 bg-[#191b1e] hover:bg-[#FF014F]/10 hover:text-[#FF014F] transition rounded-full border border-gray-800"
+                    >
+                        Skills
+                    </button>
+                    <button
+                        @click="sendChatMessage('Show me your projects.')"
+                        class="text-[10px] uppercase font-bold tracking-wider px-3 py-1 bg-[#191b1e] hover:bg-[#FF014F]/10 hover:text-[#FF014F] transition rounded-full border border-gray-800"
+                    >
+                        Projects
+                    </button>
+                    <button
+                        @click="
+                            sendChatMessage('What is your work experience?')
+                        "
+                        class="text-[10px] uppercase font-bold tracking-wider px-3 py-1 bg-[#191b1e] hover:bg-[#FF014F]/10 hover:text-[#FF014F] transition rounded-full border border-gray-800"
+                    >
+                        Experience
+                    </button>
+                    <button
+                        @click="sendChatMessage('What is your education?')"
+                        class="text-[10px] uppercase font-bold tracking-wider px-3 py-1 bg-[#191b1e] hover:bg-[#FF014F]/10 hover:text-[#FF014F] transition rounded-full border border-gray-800"
+                    >
+                        Education
+                    </button>
+                    <button
+                        @click="sendChatMessage('Are you available for hire?')"
+                        class="text-[10px] uppercase font-bold tracking-wider px-3 py-1 bg-[#191b1e] hover:bg-[#FF014F]/10 hover:text-[#FF014F] transition rounded-full border border-gray-800"
+                    >
+                        Hire Me
+                    </button>
+                </div>
+
+                <!-- Chat Input Footer -->
+                <form
+                    @submit.prevent="sendChatMessage()"
+                    class="p-3 bg-[#191b1e] border-t border-gray-800 flex gap-2"
+                >
+                    <input
+                        v-model="userChatMessage"
+                        type="text"
+                        placeholder="Ask me something..."
+                        class="flex-1 px-3 py-2 bg-[#212428] border border-gray-800 rounded-xl text-xs text-white focus:border-[#FF014F] outline-none"
+                    />
+                    <button
+                        type="submit"
+                        class="p-2 bg-[#FF014F] hover:bg-[#FF014F]/80 text-white rounded-xl transition text-xs flex items-center justify-center w-8 h-8"
+                    >
+                        <i class="fa fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Floating Chat Toggle Button -->
+            <button
+                @click="toggleChat"
+                class="w-14 h-14 bg-[#191b1e] rounded-full shadow-[5px_5px_10px_#181a1d,-5px_-5px_10px_#2a2e33] flex items-center justify-center hover:scale-110 transition duration-300 border border-gray-800 cursor-pointer text-white"
+            >
+                <i
+                    v-if="!isChatOpen"
+                    class="fa fa-comments text-xl text-[#FF014F]"
+                ></i>
+                <i v-else class="fa fa-times text-xl text-[#FF014F]"></i>
+            </button>
+        </div>
+
         <footer class="bg-[#212428]">
             <div
                 class="max-w-6xl mx-auto py-20 px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left border-y border-[#1A1C20]"
@@ -1004,6 +1165,19 @@ export default {
             activeTab: "education",
             activePortfolio: "project",
             mobileMenuOpen: false,
+
+            // Scroll to Top & Chatbot Properties
+            showScrollTop: false,
+            isChatOpen: false,
+            showChatBubble: true,
+            userChatMessage: "",
+            isTyping: false,
+            chatMessages: [
+                {
+                    sender: "bot",
+                    text: "Hi! I am Faruk's AI Assistant. How can I help you today?",
+                },
+            ],
         };
     },
     mounted() {
@@ -1011,6 +1185,13 @@ export default {
         this.getResumes();
         this.getSkills();
         this.getProjects();
+        window.addEventListener("scroll", this.handleScroll); // [3]
+    },
+    beforeDestroy() {
+        window.removeEventListener("scroll", this.handleScroll); // [3]
+    },
+    beforeUnmount() {
+        window.removeEventListener("scroll", this.handleScroll); // [3]
     },
     methods: {
         getResumes() {
@@ -1097,6 +1278,59 @@ export default {
                     console.log(error);
                 });
         },
+
+        // Scroll to Top & Chatbot Methods
+        handleScroll() {
+            this.showScrollTop = window.scrollY > 300;
+        },
+        scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        },
+        toggleChat() {
+            this.isChatOpen = !this.isChatOpen;
+            this.showChatBubble = false; // "Hello" bubble hide
+        },
+        sendChatMessage(predefinedText = "") {
+            const query = predefinedText || this.userChatMessage;
+            if (!query.trim()) return;
+
+            // user message add to chat box
+            this.chatMessages.push({ sender: "user", text: query });
+            this.userChatMessage = "";
+            this.isTyping = true;
+
+            // message area scroll down
+            this.scrollChatToBottom();
+
+            // API call to get AI response
+            axios
+                .post("/api/ai-chat", { message: query })
+                .then((response) => {
+                    this.chatMessages.push({
+                        sender: "bot",
+                        text: response.data.reply,
+                    });
+                    this.isTyping = false;
+                    this.scrollChatToBottom();
+                })
+                .catch((error) => {
+                    this.isTyping = false;
+                    this.chatMessages.push({
+                        sender: "bot",
+                        text: "Sorry, I am facing some connection issues. Please reach Faruk directly at farukmia7979@gmail.com.",
+                    });
+                    this.scrollChatToBottom();
+                    console.error(error);
+                });
+        },
+        scrollChatToBottom() {
+            this.$nextTick(() => {
+                const container = this.$refs.chatBody;
+                if (container) {
+                    container.scrollTop = container.scrollHeight;
+                }
+            });
+        },
     },
     computed: {
         groupedSkills() {
@@ -1119,5 +1353,17 @@ html {
 
 section {
     scroll-margin-top: 80px;
+}
+
+/* Custom Scrollbar for Chat Box */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #191b1e;
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #ff014f;
 }
 </style>

@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\SkillsController;
 use App\Http\Controllers\Api\ResumeController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\ChatbotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ Route::get('skills', [SkillsController::class, 'index']);
 Route::get('resumes', [ResumeController::class, 'index']);
 Route::post('contact-submit', [ContactController::class, 'store']);
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::post('/ai-chat', [ChatbotController::class, 'chat']);
 
 /*
 |--------------------------------------------------------------------------

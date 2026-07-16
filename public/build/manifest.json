@@ -24,7 +24,7 @@
     "src": "public/uploads/images/profile.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DQK4Exaw.css",
+    "file": "assets/app-C2Lujr0g.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -33,7 +33,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-phuaY1JH.js",
+    "file": "assets/app-DOooOXYP.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -55,7 +55,7 @@
     ]
   },
   "resources/js/backEnd/adminDashboard.vue": {
-    "file": "assets/adminDashboard-DxhOlTCa.js",
+    "file": "assets/adminDashboard-RyJiShNw.js",
     "name": "adminDashboard",
     "src": "resources/js/backEnd/adminDashboard.vue",
     "isDynamicEntry": true,
@@ -64,7 +64,7 @@
     ]
   },
   "resources/js/backEnd/auth/adminLogin.vue": {
-    "file": "assets/adminLogin-CsiyNyU-.js",
+    "file": "assets/adminLogin-CdsuQrh7.js",
     "name": "adminLogin",
     "src": "resources/js/backEnd/auth/adminLogin.vue",
     "isDynamicEntry": true,
@@ -73,7 +73,7 @@
     ]
   },
   "resources/js/backEnd/page/message/AdminMessages.vue": {
-    "file": "assets/AdminMessages-CYDItgXN.js",
+    "file": "assets/AdminMessages-HBsWFHA2.js",
     "name": "AdminMessages",
     "src": "resources/js/backEnd/page/message/AdminMessages.vue",
     "isDynamicEntry": true,
@@ -85,7 +85,7 @@
     ]
   },
   "resources/js/backEnd/page/project/AdminProjects.vue": {
-    "file": "assets/AdminProjects-CQDGIUqw.js",
+    "file": "assets/AdminProjects-Cqaa5hOa.js",
     "name": "AdminProjects",
     "src": "resources/js/backEnd/page/project/AdminProjects.vue",
     "isDynamicEntry": true,
@@ -94,7 +94,7 @@
     ]
   },
   "resources/js/backEnd/page/project/CreateProject.vue": {
-    "file": "assets/CreateProject-DUGk5kxi.js",
+    "file": "assets/CreateProject-CzEp5b_v.js",
     "name": "CreateProject",
     "src": "resources/js/backEnd/page/project/CreateProject.vue",
     "isDynamicEntry": true,
@@ -103,7 +103,7 @@
     ]
   },
   "resources/js/backEnd/page/project/EditProject.vue": {
-    "file": "assets/EditProject-DrL4CC7O.js",
+    "file": "assets/EditProject-C1HUbIkq.js",
     "name": "EditProject",
     "src": "resources/js/backEnd/page/project/EditProject.vue",
     "isDynamicEntry": true,
@@ -112,7 +112,7 @@
     ]
   },
   "resources/js/backEnd/page/resume/AdminResume.vue": {
-    "file": "assets/AdminResume-DSX6hjOM.js",
+    "file": "assets/AdminResume-BzWzAgXe.js",
     "name": "AdminResume",
     "src": "resources/js/backEnd/page/resume/AdminResume.vue",
     "isDynamicEntry": true,
@@ -121,7 +121,7 @@
     ]
   },
   "resources/js/backEnd/page/resume/CreateResume.vue": {
-    "file": "assets/CreateResume-CsnZNFo8.js",
+    "file": "assets/CreateResume-gUkU9Rbq.js",
     "name": "CreateResume",
     "src": "resources/js/backEnd/page/resume/CreateResume.vue",
     "isDynamicEntry": true,
@@ -130,7 +130,7 @@
     ]
   },
   "resources/js/backEnd/page/resume/EditResume.vue": {
-    "file": "assets/EditResume-BnrMHuhS.js",
+    "file": "assets/EditResume-DDN4YBK4.js",
     "name": "EditResume",
     "src": "resources/js/backEnd/page/resume/EditResume.vue",
     "isDynamicEntry": true,
@@ -139,7 +139,7 @@
     ]
   },
   "resources/js/backEnd/page/setting/AdminSettings.vue": {
-    "file": "assets/AdminSettings-BGMxj3M7.js",
+    "file": "assets/AdminSettings-Cdb0YFm-.js",
     "name": "AdminSettings",
     "src": "resources/js/backEnd/page/setting/AdminSettings.vue",
     "isDynamicEntry": true,
@@ -148,7 +148,7 @@
     ]
   },
   "resources/js/backEnd/page/skills/AdminSkills.vue": {
-    "file": "assets/AdminSkills-BUv78O5L.js",
+    "file": "assets/AdminSkills-DSbPL4eR.js",
     "name": "AdminSkills",
     "src": "resources/js/backEnd/page/skills/AdminSkills.vue",
     "isDynamicEntry": true,
@@ -157,7 +157,7 @@
     ]
   },
   "resources/js/backEnd/page/skills/CreateSkill.vue": {
-    "file": "assets/CreateSkill-DWWgL8yQ.js",
+    "file": "assets/CreateSkill-OZPAUJVX.js",
     "name": "CreateSkill",
     "src": "resources/js/backEnd/page/skills/CreateSkill.vue",
     "isDynamicEntry": true,
@@ -166,7 +166,7 @@
     ]
   },
   "resources/js/backEnd/page/skills/EditSkill.vue": {
-    "file": "assets/EditSkill-C2WiGOcz.js",
+    "file": "assets/EditSkill-Dcx4Ar56.js",
     "name": "EditSkill",
     "src": "resources/js/backEnd/page/skills/EditSkill.vue",
     "isDynamicEntry": true,
@@ -175,7 +175,7 @@
     ]
   },
   "resources/js/frontEnd/index.vue": {
-    "file": "assets/index-DUJsDxF2.js",
+    "file": "assets/index-Q6hWmyON.js",
     "name": "index",
     "src": "resources/js/frontEnd/index.vue",
     "isDynamicEntry": true,
@@ -183,7 +183,7 @@
       "resources/js/app.js"
     ],
     "css": [
-      "assets/index-CIe2qlx_.css"
+      "assets/index-BY97-io4.css"
     ],
     "assets": [
       "assets/profile-DlSqG48J.png",
