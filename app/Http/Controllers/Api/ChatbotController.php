@@ -17,14 +17,12 @@ class ChatbotController extends Controller
         $userMessage = $request->input('message');
         $apiKey = env('GEMINI_API_KEY');
 
-        // if api key not found return default response
         if (!$apiKey) {
             return response()->json([
                 'reply' => "Hi! I am Faruk's AI Assistant. Faruk hasn't configured my API key yet. Please reach him at farukmia7979@gmail.com."
             ]);
         }
 
-        // my cv details
         $systemInstruction = "You are Faruk's AI Assistant, representing Md. Faruk Mia, a Full Stack Web Developer. "
             . "Answer professionally, warmly, and concisely (maximum 2-3 sentences per answer) based on Faruk's CV details below. "
             . "If asked things not on his CV, politely redirect them to Faruk's contact details. Do not make up facts.\n\n"
@@ -51,8 +49,7 @@ class ChatbotController extends Controller
             . "- Languages: Bengali (Native), English (Proficient)";
 
         try {
-            // google gemini api request
-            $response = Http::post("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={$apiKey}", [
+            $response = Http::withoutVerifying()->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={$apiKey}", [
                 'contents' => [
                     [
                         'role' => 'user',
@@ -73,14 +70,18 @@ class ChatbotController extends Controller
                 return response()->json(['reply' => trim($reply)]);
             }
 
+            $errorData = $response->json();
+            $errorMessage = $errorData['error']['message'] ?? "Unknown Google API Error";
+            \Log::error("Gemini API Error: " . $errorMessage);
+
             return response()->json([
-                'reply' => "I am having some connection trouble. Please reach Faruk directly at farukmia7979@gmail.com!"
+                'reply' => "Google API Error: " . $errorMessage
             ]);
 
         } catch (\Exception $e) {
             \Log::error("Chatbot Error: " . $e->getMessage());
             return response()->json([
-                'reply' => "I am having some connection trouble. Please reach Faruk directly at farukmia7979@gmail.com!"
+                'reply' => "Connection Error: " . $e->getMessage()
             ]);
         }
     }
