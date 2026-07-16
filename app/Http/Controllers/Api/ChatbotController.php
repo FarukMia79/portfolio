@@ -49,8 +49,8 @@ class ChatbotController extends Controller
             . "- Languages: Bengali (Native), English (Proficient)";
 
         try {
-            // here using gemini-2.5-flash model
-            $response = Http::withoutVerifying()->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={$apiKey}", [
+            // here using gemini-3.5-flash model
+            $response = Http::withoutVerifying()->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key={$apiKey}", [
                 'contents' => [
                     [
                         'role' => 'user',
